@@ -1,6 +1,6 @@
 {
   "name": "@neurova/ai-ml",
-  "version": "0.1.0",
+  "version": "2.2.2",
   "description": "neurova AI ML — classical learners with .train()/.infer() (port of Python nalyst).",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -14,8 +14,15 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -37,5 +44,11 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/ai-ml"
   },
-  "keywords": ["neurova", "nalyst", "machine-learning", "classifier", "regressor"]
+  "keywords": [
+    "neurova",
+    "nalyst",
+    "machine-learning",
+    "classifier",
+    "regressor"
+  ]
 }

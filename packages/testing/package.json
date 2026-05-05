@@ -1,6 +1,6 @@
 {
   "name": "@neurova/testing",
-  "version": "0.1.1",
+  "version": "2.2.2",
   "description": "Testing utilities and mock providers for neurova apps",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -14,7 +14,11 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "publishConfig": {
     "access": "public",
     "provenance": true
@@ -43,5 +47,10 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/testing"
   },
-  "keywords": ["neurova", "testing", "mock", "vitest"]
+  "keywords": [
+    "neurova",
+    "testing",
+    "mock",
+    "vitest"
+  ]
 }

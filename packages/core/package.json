@@ -1,6 +1,6 @@
 {
   "name": "@neurova/core",
-  "version": "0.1.0",
+  "version": "2.2.2",
   "description": "neurova core primitives — errors, logger, schema, ids, events",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -44,8 +44,15 @@
       "require": "./dist/result.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -71,5 +78,13 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/core"
   },
-  "keywords": ["neurova", "core", "logger", "schema", "errors", "result", "events"]
+  "keywords": [
+    "neurova",
+    "core",
+    "logger",
+    "schema",
+    "errors",
+    "result",
+    "events"
+  ]
 }

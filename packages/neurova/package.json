@@ -1,6 +1,6 @@
 {
   "name": "neurova",
-  "version": "0.1.0",
+  "version": "2.2.2",
   "description": "neurova — the powerful TypeScript framework for AI-native apps. UI + Backend + AI in one import.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -32,10 +32,22 @@
       "types": "./dist/ai.d.ts",
       "import": "./dist/ai.js",
       "require": "./dist/ai.cjs"
+    },
+    "./runtime": {
+      "types": "./dist/runtime.d.ts",
+      "import": "./dist/runtime.js",
+      "require": "./dist/runtime.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -46,15 +58,20 @@
     "@neurova/core": "workspace:*",
     "@neurova/ai": "workspace:*",
     "@neurova/backend": "workspace:*",
-    "@neurova/ui": "workspace:*"
+    "@neurova/ui": "workspace:*",
+    "@neurova/runtime": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
   "peerDependenciesMeta": {
-    "react": { "optional": true },
-    "react-dom": { "optional": true }
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@neurova/tsconfig": "workspace:*",

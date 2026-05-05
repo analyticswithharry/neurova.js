@@ -1,19 +1,24 @@
 {
   "name": "{{name}}",
-  "version": "0.1.0",
   "private": true,
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "neurova": "^0.1.0"
+    "@neurova/runtime": "^2.2.2",
+    "@neurova/ui": "^2.2.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "tsx": "^4.19.1",
-    "typescript": "^5.6.3"
-  },
-  "engines": { "node": ">=20.10.0" }
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
 }

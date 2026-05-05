@@ -1,12 +1,21 @@
 {
   "name": "create-neurova",
-  "version": "0.1.0",
+  "version": "2.2.2",
   "description": "Scaffolder: `npm create neurova@latest my-app`",
   "type": "module",
-  "bin": { "create-neurova": "./dist/index.js" },
+  "bin": {
+    "create-neurova": "./dist/index.js"
+  },
   "main": "./dist/index.js",
-  "files": ["dist", "README.md", "LICENSE"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -22,7 +31,9 @@
     "tsup": "^8.3.0",
     "typescript": "^5.6.3"
   },
-  "engines": { "node": ">=20.10.0" },
+  "engines": {
+    "node": ">=20.10.0"
+  },
   "author": "@analyticswithharry and Squid Consultancy Group Ltd",
   "license": "MIT",
   "repository": {
@@ -30,5 +41,10 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/create-neurova"
   },
-  "keywords": ["neurova", "create", "scaffold", "init"]
+  "keywords": [
+    "neurova",
+    "create",
+    "scaffold",
+    "init"
+  ]
 }

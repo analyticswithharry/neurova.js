@@ -1,6 +1,6 @@
 {
   "name": "@neurova/icons",
-  "version": "0.1.0",
+  "version": "2.2.2",
   "description": "Tree-shakeable SVG icon set for neurova",
   "repository": {
     "type": "git",
@@ -19,8 +19,14 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist", "README.md"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -28,7 +34,9 @@
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist .turbo"
   },
-  "peerDependencies": { "react": ">=18" },
+  "peerDependencies": {
+    "react": ">=18"
+  },
   "devDependencies": {
     "@neurova/tsconfig": "workspace:*",
     "@types/react": "^19.0.0",

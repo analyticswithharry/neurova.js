@@ -1,12 +1,14 @@
 {
   "name": "@neurova/ui",
-  "version": "0.1.0",
+  "version": "2.2.2",
   "description": "neurova UI — React 19 components, SSR-safe, accessible, themeable",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -20,8 +22,15 @@
     },
     "./styles.css": "./dist/styles.css"
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup && cp src/styles.css dist/",
     "dev": "tsup --watch",
@@ -56,5 +65,12 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/ui"
   },
-  "keywords": ["neurova", "ui", "react", "components", "design-system", "accessible"]
+  "keywords": [
+    "neurova",
+    "ui",
+    "react",
+    "components",
+    "design-system",
+    "accessible"
+  ]
 }

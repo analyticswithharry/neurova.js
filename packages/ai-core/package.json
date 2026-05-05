@@ -1,6 +1,6 @@
 {
   "name": "@neurova/ai-core",
-  "version": "0.1.0",
+  "version": "2.2.2",
   "description": "neurova AI core — Tensor (Float32Array) + reverse-mode autograd + nn layers/optim/losses. Pure TS, zero deps.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -34,8 +34,15 @@
       "require": "./dist/losses.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -57,5 +64,11 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/ai-core"
   },
-  "keywords": ["neurova", "tensor", "autograd", "neural-network", "deep-learning"]
+  "keywords": [
+    "neurova",
+    "tensor",
+    "autograd",
+    "neural-network",
+    "deep-learning"
+  ]
 }

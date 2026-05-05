@@ -1,6 +1,6 @@
 # {{name}}
 
-A neurova starter app. See https://github.com/analyticswithharry/neurova.js.
+A new neurova app — React 19 + TypeScript + Vite, preconfigured with `@neurova/ui` and `@neurova/runtime`.
 
 ```bash
 npm install

@@ -1,6 +1,6 @@
 {
   "name": "@neurova/ai",
-  "version": "0.1.0",
+  "version": "2.2.2",
   "description": "neurova AI — chat, embeddings, vector store, RAG, agents, tracing. Provider-agnostic.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -49,8 +49,15 @@
       "require": "./dist/tracing.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

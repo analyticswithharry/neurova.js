@@ -6,6 +6,7 @@ export default defineConfig({
     ui: 'src/ui.ts',
     backend: 'src/backend.ts',
     ai: 'src/ai.ts',
+    runtime: 'src/runtime.ts',
   },
   format: ['esm', 'cjs'],
   dts: true,

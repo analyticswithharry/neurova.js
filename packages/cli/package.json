@@ -1,12 +1,22 @@
 {
   "name": "@neurova/cli",
-  "version": "0.1.0",
+  "version": "2.2.2",
   "description": "neurova command-line interface",
   "type": "module",
-  "bin": { "neurova": "./dist/cli.js" },
+  "bin": {
+    "neurova": "./dist/cli.js"
+  },
   "main": "./dist/cli.js",
-  "files": ["dist", "README.md", "LICENSE", "templates"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "templates"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -22,7 +32,9 @@
     "tsup": "^8.3.0",
     "typescript": "^5.6.3"
   },
-  "engines": { "node": ">=20.10.0" },
+  "engines": {
+    "node": ">=20.10.0"
+  },
   "author": "@analyticswithharry and Squid Consultancy Group Ltd",
   "license": "MIT",
   "repository": {
@@ -30,5 +42,9 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/cli"
   },
-  "keywords": ["neurova", "cli", "scaffold"]
+  "keywords": [
+    "neurova",
+    "cli",
+    "scaffold"
+  ]
 }

@@ -2,7 +2,7 @@ import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const VERSION = '0.1.0'
+const VERSION = '2.2.2'
 
 const HELP = `neurova ${VERSION}
 

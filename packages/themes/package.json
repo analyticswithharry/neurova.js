@@ -1,6 +1,6 @@
 {
   "name": "@neurova/themes",
-  "version": "0.1.0",
+  "version": "2.2.2",
   "description": "Design tokens and theme presets for neurova",
   "repository": {
     "type": "git",
@@ -11,7 +11,9 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -21,8 +23,14 @@
     "./light.css": "./dist/light.css",
     "./dark.css": "./dist/dark.css"
   },
-  "files": ["dist", "README.md"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup && cp src/*.css dist/",
     "dev": "tsup --watch",

@@ -1,0 +1,61 @@
+{
+  "name": "@neurova/ai-core",
+  "version": "0.1.0",
+  "description": "neurova AI core — Tensor (Float32Array) + reverse-mode autograd + nn layers/optim/losses. Pure TS, zero deps.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./tensor": {
+      "types": "./dist/tensor.d.ts",
+      "import": "./dist/tensor.js",
+      "require": "./dist/tensor.cjs"
+    },
+    "./nn": {
+      "types": "./dist/nn.d.ts",
+      "import": "./dist/nn.js",
+      "require": "./dist/nn.cjs"
+    },
+    "./optim": {
+      "types": "./dist/optim.d.ts",
+      "import": "./dist/optim.js",
+      "require": "./dist/optim.cjs"
+    },
+    "./losses": {
+      "types": "./dist/losses.d.ts",
+      "import": "./dist/losses.js",
+      "require": "./dist/losses.cjs"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": { "access": "public", "provenance": true },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "devDependencies": {
+    "@neurova/tsconfig": "workspace:*",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.2"
+  },
+  "author": "@analyticswithharry and Squid Consultancy Group Ltd",
+  "license": "MIT",
+  "homepage": "https://neurova.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/analyticswithharry/neurova.js.git",
+    "directory": "packages/ai-core"
+  },
+  "keywords": ["neurova", "tensor", "autograd", "neural-network", "deep-learning"]
+}

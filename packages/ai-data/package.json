@@ -1,0 +1,41 @@
+{
+  "name": "@neurova/ai-data",
+  "version": "0.1.0",
+  "description": "neurova AI data — built-in datasets (Iris, Boston, Titanic, Fashion-MNIST) and CSV loaders.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": { "access": "public", "provenance": true },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "devDependencies": {
+    "@neurova/tsconfig": "workspace:*",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.2"
+  },
+  "author": "@analyticswithharry and Squid Consultancy Group Ltd",
+  "license": "MIT",
+  "homepage": "https://neurova.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/analyticswithharry/neurova.js.git",
+    "directory": "packages/ai-data"
+  },
+  "keywords": ["neurova", "datasets", "iris", "fashion-mnist", "csv"]
+}

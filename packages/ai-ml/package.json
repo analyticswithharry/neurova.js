@@ -1,0 +1,41 @@
+{
+  "name": "@neurova/ai-ml",
+  "version": "0.1.0",
+  "description": "neurova AI ML — classical learners with .train()/.infer() (port of Python nalyst).",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": { "access": "public", "provenance": true },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "devDependencies": {
+    "@neurova/tsconfig": "workspace:*",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.2"
+  },
+  "author": "@analyticswithharry and Squid Consultancy Group Ltd",
+  "license": "MIT",
+  "homepage": "https://neurova.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/analyticswithharry/neurova.js.git",
+    "directory": "packages/ai-ml"
+  },
+  "keywords": ["neurova", "nalyst", "machine-learning", "classifier", "regressor"]
+}

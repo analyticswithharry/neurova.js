@@ -1,0 +1,57 @@
+{
+  "name": "@neurova/ai-vision",
+  "version": "0.1.0",
+  "description": "neurova AI vision — Image class (BGR default), color spaces, filters, transforms. JS/TS port of Python neurova.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./io-browser": {
+      "types": "./dist/io-browser.d.ts",
+      "import": "./dist/io-browser.js",
+      "require": "./dist/io-browser.cjs"
+    },
+    "./io-node": {
+      "types": "./dist/io-node.d.ts",
+      "import": "./dist/io-node.js",
+      "require": "./dist/io-node.cjs"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": { "access": "public", "provenance": true },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "peerDependencies": {
+    "sharp": "^0.33.0"
+  },
+  "peerDependenciesMeta": {
+    "sharp": { "optional": true }
+  },
+  "devDependencies": {
+    "@neurova/tsconfig": "workspace:*",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.2"
+  },
+  "author": "@analyticswithharry and Squid Consultancy Group Ltd",
+  "license": "MIT",
+  "homepage": "https://neurova.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/analyticswithharry/neurova.js.git",
+    "directory": "packages/ai-vision"
+  },
+  "keywords": ["neurova", "computer-vision", "image-processing", "filters"]
+}

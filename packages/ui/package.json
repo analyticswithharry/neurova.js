@@ -48,7 +48,7 @@
     "typescript": "^5.6.3",
     "vitest": "^2.1.2"
   },
-  "author": "@analyticswithharry",
+  "author": "@analyticswithharry and Squid Consultancy Group Ltd",
   "license": "MIT",
   "homepage": "https://neurova.dev",
   "repository": {

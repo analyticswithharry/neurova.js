@@ -69,7 +69,7 @@
     "vitest": "^2.1.2"
   },
   "engines": { "node": ">=20.10.0" },
-  "author": "@analyticswithharry",
+  "author": "@analyticswithharry and Squid Consultancy Group Ltd",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "@neurova/ai-vision",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "neurova AI vision — Image class (BGR default), color spaces, filters, transforms. JS/TS port of Python neurova.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -24,8 +24,15 @@
       "require": "./dist/io-node.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -37,7 +44,9 @@
     "sharp": "^0.33.0"
   },
   "peerDependenciesMeta": {
-    "sharp": { "optional": true }
+    "sharp": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@neurova/tsconfig": "workspace:*",
@@ -53,5 +62,10 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/ai-vision"
   },
-  "keywords": ["neurova", "computer-vision", "image-processing", "filters"]
+  "keywords": [
+    "neurova",
+    "computer-vision",
+    "image-processing",
+    "filters"
+  ]
 }

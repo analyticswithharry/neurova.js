@@ -1,6 +1,6 @@
 {
   "name": "@neurova/backend",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "neurova backend — Fastify-powered server kit with auth, db, queue, sockets, validation",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -44,8 +44,15 @@
       "require": "./dist/rate-limit.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "publishConfig": { "access": "public", "provenance": true },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -68,7 +75,9 @@
     "typescript": "^5.6.3",
     "vitest": "^2.1.2"
   },
-  "engines": { "node": ">=20.10.0" },
+  "engines": {
+    "node": ">=20.10.0"
+  },
   "author": "@analyticswithharry and Squid Consultancy Group Ltd",
   "license": "MIT",
   "repository": {
@@ -76,5 +85,13 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/backend"
   },
-  "keywords": ["neurova", "backend", "fastify", "server", "auth", "queue", "websocket"]
+  "keywords": [
+    "neurova",
+    "backend",
+    "fastify",
+    "server",
+    "auth",
+    "queue",
+    "websocket"
+  ]
 }

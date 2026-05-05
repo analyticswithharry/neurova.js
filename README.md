@@ -26,9 +26,11 @@ npm create neurova@latest my-app
 
 ```ts
 import { chat } from '@neurova/ai'
-import { createServer, defineRoute } from '@neurova/backend'
+import { createServer } from '@neurova/backend'
 import { Button, ChatWindow } from '@neurova/ui'
 ```
+
+📖 **Full API reference:** [DOCUMENTATION.md](./DOCUMENTATION.md) — every function, hook, and component with one-line usage examples.
 
 ## Develop
 

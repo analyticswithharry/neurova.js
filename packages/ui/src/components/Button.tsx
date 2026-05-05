@@ -1,4 +1,4 @@
-import { forwardRef, type ButtonHTMLAttributes } from 'react'
+import { type ButtonHTMLAttributes, forwardRef } from 'react'
 import { cx } from '../utils/cx'
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger'
@@ -13,7 +13,17 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = 'primary', size = 'md', loading, className, children, disabled, leftIcon, rightIcon, ...rest },
+  {
+    variant = 'primary',
+    size = 'md',
+    loading,
+    className,
+    children,
+    disabled,
+    leftIcon,
+    rightIcon,
+    ...rest
+  },
   ref,
 ) {
   return (
@@ -28,9 +38,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       {...rest}
     >
       {loading ? <span className="nv-btn-spinner" aria-hidden /> : null}
-      {leftIcon ? <span className="nv-btn-icon" aria-hidden>{leftIcon}</span> : null}
+      {leftIcon ? (
+        <span className="nv-btn-icon" aria-hidden>
+          {leftIcon}
+        </span>
+      ) : null}
       <span className="nv-btn-label">{children}</span>
-      {rightIcon ? <span className="nv-btn-icon" aria-hidden>{rightIcon}</span> : null}
+      {rightIcon ? (
+        <span className="nv-btn-icon" aria-hidden>
+          {rightIcon}
+        </span>
+      ) : null}
     </button>
   )
 })

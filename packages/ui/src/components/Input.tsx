@@ -1,4 +1,4 @@
-import { forwardRef, type InputHTMLAttributes } from 'react'
+import { type InputHTMLAttributes, forwardRef } from 'react'
 import { cx } from '../utils/cx'
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {

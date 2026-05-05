@@ -1,5 +1,13 @@
 import type { ChatOptions, ChatProvider, ChatResult } from './types'
-export type { ChatMessage, ChatOptions, ChatResult, ToolCall, ToolDefinition, ChatProvider, Role } from './types'
+export type {
+  ChatMessage,
+  ChatOptions,
+  ChatResult,
+  ToolCall,
+  ToolDefinition,
+  ChatProvider,
+  Role,
+} from './types'
 
 /**
  * Generic chat() — pass any ChatProvider implementation.

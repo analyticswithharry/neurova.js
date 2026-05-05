@@ -68,5 +68,15 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/neurova"
   },
-  "keywords": ["neurova", "ai", "ui", "framework", "typescript", "react", "fastify", "rag", "agents"]
+  "keywords": [
+    "neurova",
+    "ai",
+    "ui",
+    "framework",
+    "typescript",
+    "react",
+    "fastify",
+    "rag",
+    "agents"
+  ]
 }

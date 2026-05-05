@@ -1,4 +1,11 @@
-import type { ChatOptions, ChatProvider, ChatResult, EmbedOptions, EmbedProvider, EmbedResult } from '@neurova/ai'
+import type {
+  ChatOptions,
+  ChatProvider,
+  ChatResult,
+  EmbedOptions,
+  EmbedProvider,
+  EmbedResult,
+} from '@neurova/ai'
 
 export interface MockChatOptions {
   /** Sequence of replies to return in order. After exhausting, repeats last. */

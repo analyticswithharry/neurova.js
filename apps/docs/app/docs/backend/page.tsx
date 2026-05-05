@@ -2,7 +2,10 @@ export default function Page() {
   return (
     <article>
       <h1>@neurova/backend</h1>
-      <p>Fastify-based HTTP server, pre-wired with auth, rate-limit, cache, queue, and websocket helpers.</p>
+      <p>
+        Fastify-based HTTP server, pre-wired with auth, rate-limit, cache, queue, and websocket
+        helpers.
+      </p>
 
       <h2>Server</h2>
       <pre>{`import { createServer, startServer } from '@neurova/backend'

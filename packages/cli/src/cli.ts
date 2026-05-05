@@ -1,4 +1,4 @@
-import { mkdir, writeFile, readFile, readdir, stat } from 'node:fs/promises'
+import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -44,7 +44,9 @@ async function main(argv: string[]): Promise<number> {
 }
 
 async function cmdInfo(): Promise<number> {
-  process.stdout.write(`neurova ${VERSION}\nnode ${process.version}\nplatform ${process.platform} ${process.arch}\n`)
+  process.stdout.write(
+    `neurova ${VERSION}\nnode ${process.version}\nplatform ${process.platform} ${process.arch}\n`,
+  )
   return 0
 }
 
@@ -86,7 +88,7 @@ async function copyTree(src: string, dst: string, vars: Record<string, string>):
 main(process.argv.slice(2)).then(
   (code) => process.exit(code),
   (err) => {
-    process.stderr.write(`${err instanceof Error ? err.stack ?? err.message : String(err)}\n`)
+    process.stderr.write(`${err instanceof Error ? (err.stack ?? err.message) : String(err)}\n`)
     process.exit(1)
   },
 )

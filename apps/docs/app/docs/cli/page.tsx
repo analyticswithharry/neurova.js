@@ -7,7 +7,7 @@ neurova init my-app
 neurova info
 neurova help`}</pre>
       <h2>Or use npm create</h2>
-      <pre>{`npm create neurova@latest my-app`}</pre>
+      <pre>{'npm create neurova@latest my-app'}</pre>
     </article>
   )
 }

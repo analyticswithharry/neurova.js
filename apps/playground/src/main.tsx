@@ -2,6 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import '@neurova/themes/light.css'
 import '@neurova/ui/styles.css'
+import { IconBot, IconBrain, IconSpark } from '@neurova/icons'
 import {
   Button,
   Card,
@@ -14,19 +15,24 @@ import {
   useTheme,
 } from '@neurova/ui'
 import type { ChatMessage } from '@neurova/ui'
-import { IconBrain, IconSpark, IconBot } from '@neurova/icons'
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <Card title={title}>
-      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>{children}</div>
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+        {children}
+      </div>
     </Card>
   )
 }
 
 function Toggle() {
   const { theme, setTheme } = useTheme()
-  return <Button variant="ghost" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>{theme}</Button>
+  return (
+    <Button variant="ghost" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+      {theme}
+    </Button>
+  )
 }
 
 function App() {
@@ -47,7 +53,9 @@ function App() {
 
         <Section title="Buttons">
           <Button>Default</Button>
-          <Button variant="primary" leftIcon={<IconSpark />}>Primary</Button>
+          <Button variant="primary" leftIcon={<IconSpark />}>
+            Primary
+          </Button>
           <Button variant="ghost">Ghost</Button>
           <Button disabled>Disabled</Button>
         </Section>
@@ -76,8 +84,14 @@ function App() {
           <ChatWindow
             messages={messages}
             onSend={(text) => {
-              const next: ChatMessage[] = [...messages, { id: String(Date.now()), role: 'user', content: text }]
-              setMessages([...next, { id: String(Date.now() + 1), role: 'assistant', content: `you said: ${text}` }])
+              const next: ChatMessage[] = [
+                ...messages,
+                { id: String(Date.now()), role: 'user', content: text },
+              ]
+              setMessages([
+                ...next,
+                { id: String(Date.now() + 1), role: 'assistant', content: `you said: ${text}` },
+              ])
             }}
           />
         </Card>

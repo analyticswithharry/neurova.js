@@ -49,8 +49,7 @@ export const themePresets: Record<Theme, Record<string, string>> = {
     '--nv-radius-md': '8px',
     '--nv-radius-lg': '14px',
     '--nv-space-unit': '4px',
-    '--nv-font-sans':
-      'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+    '--nv-font-sans': 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
     '--nv-font-mono': 'ui-monospace, SFMono-Regular, Menlo, monospace',
     '--nv-shadow-sm': '0 1px 2px rgba(0,0,0,.06)',
     '--nv-shadow-md': '0 4px 12px rgba(0,0,0,.08)',
@@ -70,8 +69,7 @@ export const themePresets: Record<Theme, Record<string, string>> = {
     '--nv-radius-md': '8px',
     '--nv-radius-lg': '14px',
     '--nv-space-unit': '4px',
-    '--nv-font-sans':
-      'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+    '--nv-font-sans': 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
     '--nv-font-mono': 'ui-monospace, SFMono-Regular, Menlo, monospace',
     '--nv-shadow-sm': '0 1px 2px rgba(0,0,0,.4)',
     '--nv-shadow-md': '0 4px 12px rgba(0,0,0,.5)',

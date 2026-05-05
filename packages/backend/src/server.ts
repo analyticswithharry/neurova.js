@@ -1,7 +1,7 @@
-import Fastify, { type FastifyInstance, type FastifyServerOptions } from 'fastify'
 import cors from '@fastify/cors'
 import helmet from '@fastify/helmet'
-import { isNeurovaError, logger as defaultLogger } from '@neurova/core'
+import { logger as defaultLogger, isNeurovaError } from '@neurova/core'
+import Fastify, { type FastifyInstance, type FastifyServerOptions } from 'fastify'
 
 export interface CreateServerOptions extends FastifyServerOptions {
   cors?: boolean | Parameters<typeof cors>[1]
@@ -17,8 +17,12 @@ export type Server = FastifyInstance
  * error handling, and neurova error mapping.
  */
 export async function createServer(options: CreateServerOptions = {}): Promise<Server> {
-  const { cors: corsOpts = true, helmet: helmetOpts = true, requestIdHeader = 'x-request-id', ...fastifyOpts } =
-    options
+  const {
+    cors: corsOpts = true,
+    helmet: helmetOpts = true,
+    requestIdHeader = 'x-request-id',
+    ...fastifyOpts
+  } = options
 
   const app = Fastify({
     logger: { level: 'info' },

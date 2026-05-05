@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react'
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 import './globals.css'
 
 export const metadata = {
@@ -24,10 +24,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body>
         <header className="nv-header">
-          <Link href="/" className="nv-brand">neurova</Link>
+          <Link href="/" className="nv-brand">
+            neurova
+          </Link>
           <nav>
             {NAV.map((n) => (
-              <Link key={n.href} href={n.href}>{n.label}</Link>
+              <Link key={n.href} href={n.href}>
+                {n.label}
+              </Link>
             ))}
           </nav>
         </header>

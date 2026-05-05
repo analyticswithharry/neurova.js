@@ -1,4 +1,5 @@
-[data-nv-theme="dark"], :root.dark {
+[data-nv-theme="dark"],
+:root.dark {
   --nv-color-primary: #818cf8;
   --nv-color-primary-fg: #0f172a;
   --nv-color-bg: #0b1020;

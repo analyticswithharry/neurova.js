@@ -3,7 +3,7 @@
  * dependency. Add neurova-specific helpers here.
  */
 export { z } from 'zod'
-import { z, type ZodTypeAny } from 'zod'
+import type { ZodTypeAny, z } from 'zod'
 import { ValidationError } from './errors'
 
 export type Schema<T> = z.ZodType<T>

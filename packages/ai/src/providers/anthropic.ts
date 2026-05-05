@@ -1,5 +1,5 @@
 import { NeurovaError } from '@neurova/core'
-import type { ChatProvider, ChatOptions, ChatResult } from '../types'
+import type { ChatOptions, ChatProvider, ChatResult } from '../types'
 
 export interface AnthropicConfig {
   apiKey: string
@@ -29,7 +29,15 @@ export function anthropic(config: AnthropicConfig): ChatProvider {
       max_tokens: opts.maxTokens ?? 1024,
       temperature: opts.temperature,
       stream,
-      ...(opts.tools ? { tools: opts.tools.map((t) => ({ name: t.name, description: t.description, input_schema: t.parameters })) } : {}),
+      ...(opts.tools
+        ? {
+            tools: opts.tools.map((t) => ({
+              name: t.name,
+              description: t.description,
+              input_schema: t.parameters,
+            })),
+          }
+        : {}),
     }
   }
 
@@ -51,7 +59,13 @@ export function anthropic(config: AnthropicConfig): ChatProvider {
         })
       }
       const data = (await res.json()) as {
-        content: { type: string; text?: string; id?: string; name?: string; input?: Record<string, unknown> }[]
+        content: {
+          type: string
+          text?: string
+          id?: string
+          name?: string
+          input?: Record<string, unknown>
+        }[]
         stop_reason?: string
         usage?: { input_tokens?: number; output_tokens?: number }
       }
@@ -108,7 +122,11 @@ export function anthropic(config: AnthropicConfig): ChatProvider {
               type: string
               delta?: { type?: string; text?: string }
             }
-            if (json.type === 'content_block_delta' && json.delta?.type === 'text_delta' && json.delta.text) {
+            if (
+              json.type === 'content_block_delta' &&
+              json.delta?.type === 'text_delta' &&
+              json.delta.text
+            ) {
               yield json.delta.text
             }
           } catch {

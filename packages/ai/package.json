@@ -74,5 +74,16 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/ai"
   },
-  "keywords": ["neurova", "ai", "llm", "rag", "agents", "embeddings", "vector", "openai", "anthropic", "ollama"]
+  "keywords": [
+    "neurova",
+    "ai",
+    "llm",
+    "rag",
+    "agents",
+    "embeddings",
+    "vector",
+    "openai",
+    "anthropic",
+    "ollama"
+  ]
 }

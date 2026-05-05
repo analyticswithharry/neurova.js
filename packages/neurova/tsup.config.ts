@@ -11,6 +11,14 @@ export default defineConfig({
   dts: true,
   clean: true,
   sourcemap: true,
-  external: ['react', 'react-dom', 'fastify', '@fastify/cors', '@fastify/helmet', '@fastify/jwt', 'ws'],
+  external: [
+    'react',
+    'react-dom',
+    'fastify',
+    '@fastify/cors',
+    '@fastify/helmet',
+    '@fastify/jwt',
+    'ws',
+  ],
   target: 'es2022',
 })

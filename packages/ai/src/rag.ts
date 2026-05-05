@@ -13,7 +13,10 @@ export interface ChunkOptions {
 export function chunkText(text: string, opts: ChunkOptions = {}): string[] {
   const size = opts.size ?? 800
   const overlap = opts.overlap ?? 120
-  const paragraphs = text.split(/\n{2,}/g).map((s) => s.trim()).filter(Boolean)
+  const paragraphs = text
+    .split(/\n{2,}/g)
+    .map((s) => s.trim())
+    .filter(Boolean)
   const chunks: string[] = []
   for (const p of paragraphs) {
     if (p.length <= size) {
@@ -54,7 +57,12 @@ export async function buildIndex(docs: RagDocument[], opts: BuildIndexOptions): 
     const batch = records.slice(i, i + 100)
     const { vectors } = await opts.embedder.embed({ input: batch.map((b) => b.text) })
     await opts.store.upsert(
-      batch.map((b, idx) => ({ id: b.id, text: b.text, metadata: b.metadata, vector: vectors[idx]! })),
+      batch.map((b, idx) => ({
+        id: b.id,
+        text: b.text,
+        metadata: b.metadata,
+        vector: vectors[idx]!,
+      })),
     )
   }
   return records.length

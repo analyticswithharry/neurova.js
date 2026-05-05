@@ -1,5 +1,12 @@
 import { NeurovaError } from '@neurova/core'
-import type { ChatProvider, ChatOptions, ChatResult, EmbedProvider, EmbedOptions, EmbedResult } from '../types'
+import type {
+  ChatOptions,
+  ChatProvider,
+  ChatResult,
+  EmbedOptions,
+  EmbedProvider,
+  EmbedResult,
+} from '../types'
 
 export interface OllamaConfig {
   baseURL?: string

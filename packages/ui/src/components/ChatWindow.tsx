@@ -1,7 +1,7 @@
-import { useState, type ReactNode } from 'react'
+import { type ReactNode, useState } from 'react'
 import { cx } from '../utils/cx'
-import { Input } from './Input'
 import { Button } from './Button'
+import { Input } from './Input'
 
 export interface ChatMessage {
   id: string
@@ -57,7 +57,9 @@ export function ChatWindow({
           disabled={pending}
           aria-label="Message"
         />
-        <Button type="submit" loading={pending}>Send</Button>
+        <Button type="submit" loading={pending}>
+          Send
+        </Button>
       </form>
     </div>
   )

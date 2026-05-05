@@ -2,7 +2,9 @@ export default function Page() {
   return (
     <article>
       <h1>@neurova/ai</h1>
-      <p>Provider-agnostic AI runtime: chat, embeddings, vector search, RAG, and tool-using agents.</p>
+      <p>
+        Provider-agnostic AI runtime: chat, embeddings, vector search, RAG, and tool-using agents.
+      </p>
 
       <h2>Providers</h2>
       <pre>{`import { openAI, anthropic, ollama, echo } from '@neurova/ai/providers'

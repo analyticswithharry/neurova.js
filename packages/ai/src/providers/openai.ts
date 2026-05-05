@@ -1,5 +1,12 @@
 import { NeurovaError } from '@neurova/core'
-import type { ChatProvider, ChatOptions, ChatResult, EmbedProvider, EmbedOptions, EmbedResult } from '../types'
+import type {
+  ChatOptions,
+  ChatProvider,
+  ChatResult,
+  EmbedOptions,
+  EmbedProvider,
+  EmbedResult,
+} from '../types'
 
 export interface OpenAIConfig {
   apiKey: string
@@ -10,7 +17,10 @@ export interface OpenAIConfig {
 }
 
 interface OpenAIChoice {
-  message: { content: string | null; tool_calls?: { id: string; function: { name: string; arguments: string } }[] }
+  message: {
+    content: string | null
+    tool_calls?: { id: string; function: { name: string; arguments: string } }[]
+  }
   finish_reason: string
 }
 
@@ -74,13 +84,20 @@ export function openAI(config: OpenAIConfig): ChatProvider & EmbedProvider {
           details: { body: await res.text() },
         })
       }
-      const data = (await res.json()) as { choices: OpenAIChoice[]; usage?: { prompt_tokens?: number; completion_tokens?: number } }
+      const data = (await res.json()) as {
+        choices: OpenAIChoice[]
+        usage?: { prompt_tokens?: number; completion_tokens?: number }
+      }
       const choice = data.choices[0]
-      if (!choice) throw new NeurovaError('OpenAI returned no choices', { code: 'NEUROVA_PROVIDER_ERROR' })
+      if (!choice)
+        throw new NeurovaError('OpenAI returned no choices', { code: 'NEUROVA_PROVIDER_ERROR' })
       const result: ChatResult = {
         text: choice.message.content ?? '',
         finishReason: choice.finish_reason as ChatResult['finishReason'],
-        usage: { inputTokens: data.usage?.prompt_tokens, outputTokens: data.usage?.completion_tokens },
+        usage: {
+          inputTokens: data.usage?.prompt_tokens,
+          outputTokens: data.usage?.completion_tokens,
+        },
         raw: data,
       }
       if (choice.message.tool_calls?.length) {
@@ -148,7 +165,10 @@ export function openAI(config: OpenAIConfig): ChatProvider & EmbedProvider {
           details: { body: await res.text() },
         })
       }
-      const data = (await res.json()) as { data: { embedding: number[] }[]; usage?: { prompt_tokens?: number } }
+      const data = (await res.json()) as {
+        data: { embedding: number[] }[]
+        usage?: { prompt_tokens?: number }
+      }
       return {
         vectors: data.data.map((d) => d.embedding),
         usage: { inputTokens: data.usage?.prompt_tokens },

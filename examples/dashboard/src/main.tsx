@@ -2,9 +2,9 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import '@neurova/themes/light.css'
 import '@neurova/ui/styles.css'
+import { IconBrain, IconSpark } from '@neurova/icons'
 import { Button, Card, ChatWindow, ThemeProvider, useTheme } from '@neurova/ui'
 import type { ChatMessage } from '@neurova/ui'
-import { IconBrain, IconSpark } from '@neurova/icons'
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme()
@@ -22,11 +22,17 @@ function App() {
   const [pending, setPending] = React.useState(false)
 
   const onSend = async (text: string) => {
-    const next: ChatMessage[] = [...messages, { id: String(Date.now()), role: 'user', content: text }]
+    const next: ChatMessage[] = [
+      ...messages,
+      { id: String(Date.now()), role: 'user', content: text },
+    ]
     setMessages(next)
     setPending(true)
     await new Promise((r) => setTimeout(r, 400))
-    setMessages([...next, { id: String(Date.now() + 1), role: 'assistant', content: `echo: ${text}` }])
+    setMessages([
+      ...next,
+      { id: String(Date.now() + 1), role: 'assistant', content: `echo: ${text}` },
+    ])
     setPending(false)
   }
 

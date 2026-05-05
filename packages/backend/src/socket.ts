@@ -1,6 +1,6 @@
-import { WebSocketServer, type WebSocket } from 'ws'
-import { EventBus } from '@neurova/core'
 import type { Server as HttpServer } from 'node:http'
+import { EventBus } from '@neurova/core'
+import { type WebSocket, WebSocketServer } from 'ws'
 
 export type SocketEvents = {
   connection: { client: SocketClient }

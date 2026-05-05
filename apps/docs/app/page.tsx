@@ -5,16 +5,23 @@ export default function Home() {
     <>
       <section className="nv-hero">
         <h1>neurova</h1>
-        <p>The powerful TypeScript framework for AI-native apps. UI components, backend server, and AI runtime — all in one install.</p>
+        <p>
+          The powerful TypeScript framework for AI-native apps. UI components, backend server, and
+          AI runtime — all in one install.
+        </p>
         <div className="nv-cta">
-          <Link className="nv-btn" href="/docs/getting-started">Get started</Link>
-          <Link className="nv-btn secondary" href="/examples">See examples</Link>
+          <Link className="nv-btn" href="/docs/getting-started">
+            Get started
+          </Link>
+          <Link className="nv-btn secondary" href="/examples">
+            See examples
+          </Link>
         </div>
       </section>
 
       <section>
         <h2>One install. Everything you need.</h2>
-        <pre>{`npm install neurova`}</pre>
+        <pre>{'npm install neurova'}</pre>
         <pre>{`import { ai, backend, core } from 'neurova'
 import { Button, ChatWindow } from 'neurova/ui'
 

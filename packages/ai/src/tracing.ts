@@ -10,7 +10,11 @@ export interface Span {
 }
 
 export interface Tracer {
-  span<T>(name: string, fn: (span: Span) => Promise<T> | T, attributes?: Record<string, unknown>): Promise<T>
+  span<T>(
+    name: string,
+    fn: (span: Span) => Promise<T> | T,
+    attributes?: Record<string, unknown>,
+  ): Promise<T>
   current(): Span | null
   export(): Span[]
 }

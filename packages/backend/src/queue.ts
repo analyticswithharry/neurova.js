@@ -64,7 +64,7 @@ export class Queue<T = unknown> {
       const job = this.q.splice(idx, 1)[0]!
       this.active++
       Promise.resolve()
-        .then(() => this.handler!(job.data))
+        .then(() => this.handler?.(job.data))
         .then(() => {
           this.active--
           this.events.emit('completed', { id: job.id })

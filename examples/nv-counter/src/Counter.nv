@@ -1,0 +1,10 @@
+component Counter(start = 0) {
+  state count = start
+
+  <div class="counter">
+    <h1>neurova counter</h1>
+    <button on:click={() => count.set(count() + 1)}>
+      Clicked {count()} times
+    </button>
+  </div>
+}

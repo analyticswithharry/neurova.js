@@ -14,11 +14,7 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["dist", "README.md", "LICENSE"],
   "publishConfig": {
     "access": "public",
     "provenance": true
@@ -52,12 +48,5 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/runtime"
   },
-  "keywords": [
-    "neurova",
-    "react",
-    "typescript",
-    "hooks",
-    "signals",
-    "store"
-  ]
+  "keywords": ["neurova", "react", "typescript", "hooks", "signals", "store"]
 }

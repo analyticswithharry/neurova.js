@@ -14,11 +14,7 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["dist", "README.md", "LICENSE"],
   "publishConfig": {
     "access": "public",
     "provenance": true
@@ -44,11 +40,5 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/ai-data"
   },
-  "keywords": [
-    "neurova",
-    "datasets",
-    "iris",
-    "fashion-mnist",
-    "csv"
-  ]
+  "keywords": ["neurova", "datasets", "iris", "fashion-mnist", "csv"]
 }

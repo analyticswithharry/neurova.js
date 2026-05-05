@@ -44,11 +44,7 @@
       "require": "./dist/rate-limit.cjs"
     }
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["dist", "README.md", "LICENSE"],
   "publishConfig": {
     "access": "public",
     "provenance": true
@@ -85,13 +81,5 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/backend"
   },
-  "keywords": [
-    "neurova",
-    "backend",
-    "fastify",
-    "server",
-    "auth",
-    "queue",
-    "websocket"
-  ]
+  "keywords": ["neurova", "backend", "fastify", "server", "auth", "queue", "websocket"]
 }

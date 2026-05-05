@@ -9,14 +9,7 @@
  * MIT licensed.
  */
 
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import type { DependencyList } from 'react'
 
 /** A signal-style hook: identical surface to React's `useState`. */
@@ -53,8 +46,7 @@ export function createStore<T>(initial: T): Store<T> {
   return {
     getState: () => state,
     setState: (next) => {
-      const value =
-        typeof next === 'function' ? (next as (prev: T) => T)(state) : next
+      const value = typeof next === 'function' ? (next as (prev: T) => T)(state) : next
       if (Object.is(value, state)) return
       state = value
       for (const l of listeners) l()

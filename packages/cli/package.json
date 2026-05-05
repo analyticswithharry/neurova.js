@@ -7,12 +7,7 @@
     "neurova": "./dist/cli.js"
   },
   "main": "./dist/cli.js",
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE",
-    "templates"
-  ],
+  "files": ["dist", "README.md", "LICENSE", "templates"],
   "publishConfig": {
     "access": "public",
     "provenance": true
@@ -42,9 +37,5 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/cli"
   },
-  "keywords": [
-    "neurova",
-    "cli",
-    "scaffold"
-  ]
+  "keywords": ["neurova", "cli", "scaffold"]
 }

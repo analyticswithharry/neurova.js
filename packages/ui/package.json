@@ -6,9 +6,7 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "sideEffects": [
-    "*.css"
-  ],
+  "sideEffects": ["*.css"],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -22,11 +20,7 @@
     },
     "./styles.css": "./dist/styles.css"
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["dist", "README.md", "LICENSE"],
   "publishConfig": {
     "access": "public",
     "provenance": true
@@ -65,12 +59,5 @@
     "url": "https://github.com/analyticswithharry/neurova.js.git",
     "directory": "packages/ui"
   },
-  "keywords": [
-    "neurova",
-    "ui",
-    "react",
-    "components",
-    "design-system",
-    "accessible"
-  ]
+  "keywords": ["neurova", "ui", "react", "components", "design-system", "accessible"]
 }

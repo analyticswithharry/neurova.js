@@ -15,8 +15,16 @@ interface FashionMnistOptions {
 }
 
 const LABELS = [
-  'T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
-  'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot',
+  'T-shirt/top',
+  'Trouser',
+  'Pullover',
+  'Dress',
+  'Coat',
+  'Sandal',
+  'Shirt',
+  'Sneaker',
+  'Bag',
+  'Ankle boot',
 ]
 
 /**
@@ -45,8 +53,10 @@ export async function loadFashionMnist(opts: FashionMnistOptions = {}): Promise<
   for (let i = 0; i < count; i++) target[i] = labels[i]!
 
   return {
-    data, target,
-    nSamples: count, nFeatures: rows * cols,
+    data,
+    target,
+    nSamples: count,
+    nFeatures: rows * cols,
     featureNames: Array.from({ length: rows * cols }, (_, i) => `pixel${i}`),
     targetNames: LABELS,
     description: `Fashion-MNIST ${subset} subset (${count} × 28×28 grayscale).`,
@@ -60,22 +70,33 @@ async function fetchAndDecompress(url: string): Promise<Uint8Array> {
   if (typeof DecompressionStream === 'undefined') {
     throw new Error('DecompressionStream API unavailable; need Node ≥ 18 or modern browser')
   }
-  const stream = res.body!.pipeThrough(new DecompressionStream('gzip'))
+  if (!res.body) throw new Error(`fetch ${url} returned no body`)
+  const stream = res.body.pipeThrough(new DecompressionStream('gzip'))
   const reader = stream.getReader()
   const chunks: Uint8Array[] = []
   let total = 0
   for (;;) {
     const { value, done } = await reader.read()
     if (done) break
-    chunks.push(value); total += value.length
+    if (!value) continue
+    chunks.push(value)
+    total += value.length
   }
   const out = new Uint8Array(total)
   let off = 0
-  for (const c of chunks) { out.set(c, off); off += c.length }
+  for (const c of chunks) {
+    out.set(c, off)
+    off += c.length
+  }
   return out
 }
 
-function parseIdxImages(buf: Uint8Array): { images: Uint8Array; count: number; rows: number; cols: number } {
+function parseIdxImages(buf: Uint8Array): {
+  images: Uint8Array
+  count: number
+  rows: number
+  cols: number
+} {
   const view = new DataView(buf.buffer, buf.byteOffset, buf.byteLength)
   const magic = view.getUint32(0, false)
   if (magic !== 0x00000803) throw new Error(`bad IDX images magic: ${magic.toString(16)}`)

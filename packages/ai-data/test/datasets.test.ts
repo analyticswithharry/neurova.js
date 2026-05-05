@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
-import { loadIris, parseCsv, asMatrix, row } from '../src'
+import { describe, expect, it } from 'vitest'
+import { asMatrix, loadIris, parseCsv, row } from '../src'
 
 describe('loadIris', () => {
   const ds = loadIris()
@@ -14,7 +14,10 @@ describe('loadIris', () => {
 
   it('first row matches the canonical Iris dataset', () => {
     expect(Array.from(ds.data.slice(0, 4))).toEqual([
-      Math.fround(5.1), Math.fround(3.5), Math.fround(1.4), Math.fround(0.2),
+      Math.fround(5.1),
+      Math.fround(3.5),
+      Math.fround(1.4),
+      Math.fround(0.2),
     ])
     expect(ds.target[0]).toBe(0)
   })
@@ -37,7 +40,7 @@ describe('helpers', () => {
   it('asMatrix returns a 2-D array shaped [n × f]', () => {
     const m = asMatrix(ds)
     expect(m.length).toBe(150)
-    expect(m[0]!.length).toBe(4)
+    expect(m[0]?.length).toBe(4)
   })
 })
 
@@ -45,7 +48,10 @@ describe('parseCsv', () => {
   it('handles header + simple rows', () => {
     const out = parseCsv('a,b,c\n1,2,3\n4,5,6\n')
     expect(out.header).toEqual(['a', 'b', 'c'])
-    expect(out.rows).toEqual([['1', '2', '3'], ['4', '5', '6']])
+    expect(out.rows).toEqual([
+      ['1', '2', '3'],
+      ['4', '5', '6'],
+    ])
   })
 
   it('handles quoted fields with commas and escaped quotes', () => {

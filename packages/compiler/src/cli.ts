@@ -7,7 +7,7 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { compile, type EmitTarget } from './index.js'
+import { type EmitTarget, compile } from './index.js'
 
 function main(): void {
   const args = process.argv.slice(2)
@@ -48,7 +48,7 @@ function main(): void {
   if (output) {
     writeFileSync(resolve(output), code, 'utf8')
   } else {
-    process.stdout.write(code + '\n')
+    process.stdout.write(`${code}\n`)
   }
 }
 

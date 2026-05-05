@@ -3,7 +3,7 @@
  *
  * Compiles .nv source files on the fly via @neurova/compiler.
  */
-import { compile, type EmitTarget } from '@neurova/compiler'
+import { type EmitTarget, compile } from '@neurova/compiler'
 
 export interface NeurovaPluginOptions {
   /** Codegen target. Defaults to "runtime". */
@@ -17,10 +17,7 @@ export interface NeurovaPluginOptions {
 interface ViteLikePlugin {
   name: string
   enforce?: 'pre' | 'post'
-  transform(
-    code: string,
-    id: string,
-  ): { code: string; map: null } | null
+  transform(code: string, id: string): { code: string; map: null } | null
 }
 
 export default function neurova(options: NeurovaPluginOptions = {}): ViteLikePlugin {

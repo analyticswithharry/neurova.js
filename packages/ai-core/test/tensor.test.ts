@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
-import { Tensor, Linear, Sequential, ReLU, SGD, Adam, mseLoss } from '../src'
+import { describe, expect, it } from 'vitest'
+import { Adam, Linear, ReLU, SGD, Sequential, Tensor, mseLoss } from '../src'
 
 describe('Tensor', () => {
   it('constructs with shape', () => {
@@ -51,8 +51,8 @@ describe('nn + optim', () => {
     const l = new Linear(3, 2)
     const p = l.parameters()
     expect(p.length).toBe(2)
-    expect(p[0]!.shape).toEqual([3, 2])
-    expect(p[1]!.shape).toEqual([1, 2])
+    expect(p[0]?.shape).toEqual([3, 2])
+    expect(p[1]?.shape).toEqual([1, 2])
   })
 
   it('Sequential collects params from all layers', () => {
@@ -71,7 +71,8 @@ describe('nn + optim', () => {
     const opt = new SGD(model.parameters(), 0.05)
     const X = new Tensor([0, 1, 2, 3], [4, 1])
     const Y = new Tensor([1, 3, 5, 7], [4, 1])
-    let firstLoss = 0, lastLoss = 0
+    let firstLoss = 0
+    let lastLoss = 0
     for (let epoch = 0; epoch < 200; epoch++) {
       opt.zeroGrad()
       const pred = model.forward(X)
@@ -87,7 +88,10 @@ describe('nn + optim', () => {
 
   it('Adam optimizer runs and reduces loss', () => {
     let seed = 42
-    const rng = () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff }
+    const rng = () => {
+      seed = (seed * 1103515245 + 12345) & 0x7fffffff
+      return seed / 0x7fffffff
+    }
     const model = new Sequential(new Linear(1, 1, rng))
     const opt = new Adam(model.parameters(), 0.05)
     const X = new Tensor([0, 1, 2, 3], [4, 1])

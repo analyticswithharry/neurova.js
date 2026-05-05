@@ -24,13 +24,19 @@ export abstract class Module {
     return out
   }
 
-  zeroGrad(): void { for (const p of this.parameters()) p.zeroGrad() }
+  zeroGrad(): void {
+    for (const p of this.parameters()) p.zeroGrad()
+  }
 }
 
 export class Linear extends Module {
   weight: Tensor
   bias: Tensor
-  constructor(public readonly inFeatures: number, public readonly outFeatures: number, rng: () => number = Math.random) {
+  constructor(
+    public readonly inFeatures: number,
+    public readonly outFeatures: number,
+    rng: () => number = Math.random,
+  ) {
     super()
     // He-style init scaled for ReLU.
     const scale = Math.sqrt(2 / inFeatures)
@@ -39,16 +45,33 @@ export class Linear extends Module {
     this.weight = new Tensor(w, [inFeatures, outFeatures], true)
     this.bias = new Tensor(new Float32Array(outFeatures), [1, outFeatures], true)
   }
-  forward(x: Tensor): Tensor { return x.matmul(this.weight).add(this.bias) }
+  forward(x: Tensor): Tensor {
+    return x.matmul(this.weight).add(this.bias)
+  }
 }
 
-export class ReLU extends Module { forward(x: Tensor): Tensor { return x.relu() } }
-export class Sigmoid extends Module { forward(x: Tensor): Tensor { return x.sigmoid() } }
-export class Tanh extends Module { forward(x: Tensor): Tensor { return x.tanh() } }
+export class ReLU extends Module {
+  forward(x: Tensor): Tensor {
+    return x.relu()
+  }
+}
+export class Sigmoid extends Module {
+  forward(x: Tensor): Tensor {
+    return x.sigmoid()
+  }
+}
+export class Tanh extends Module {
+  forward(x: Tensor): Tensor {
+    return x.tanh()
+  }
+}
 
 export class Sequential extends Module {
   layers: Module[]
-  constructor(...layers: Module[]) { super(); this.layers = layers }
+  constructor(...layers: Module[]) {
+    super()
+    this.layers = layers
+  }
   forward(x: Tensor): Tensor {
     let y = x
     for (const l of this.layers) y = l.forward(y)

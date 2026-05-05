@@ -13,7 +13,11 @@ describe('parser', () => {
     expect(c.name).toBe('Hello')
     expect(c.params).toBe('name')
     expect(c.template.tag).toBe('h1')
-    expect(c.template.attrs[0]).toMatchObject({ kind: 'StaticAttr', name: 'class', value: 'greeting' })
+    expect(c.template.attrs[0]).toMatchObject({
+      kind: 'StaticAttr',
+      name: 'class',
+      value: 'greeting',
+    })
   })
 
   it('parses state and event handlers', () => {
@@ -34,9 +38,10 @@ describe('parser', () => {
   <div class="card"><span>{title}</span><p>{body}</p></div>
 }`
     const file = parse(src)
-    const root = file.components[0]!.template
-    expect(root.children).toHaveLength(2)
-    expect((root.children[0] as { tag: string }).tag).toBe('span')
+    const root = file.components[0]?.template
+    expect(root).toBeDefined()
+    expect(root!.children).toHaveLength(2)
+    expect((root!.children[0] as { tag: string }).tag).toBe('span')
   })
 
   it('parses self-closing tags', () => {
@@ -44,7 +49,7 @@ describe('parser', () => {
   <img src="x.png" />
 }`
     const file = parse(src)
-    expect(file.components[0]!.template.selfClosing).toBe(true)
+    expect(file.components[0]?.template.selfClosing).toBe(true)
   })
 
   it('throws on mismatched closing tag', () => {

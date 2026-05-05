@@ -32,9 +32,10 @@ export class Image {
       if (opts.data.length !== expected) {
         throw new Error(`data length ${opts.data.length} != ${expected}`)
       }
-      this.data = opts.data instanceof Uint8ClampedArray
-        ? opts.data
-        : new Uint8ClampedArray(opts.data.buffer, opts.data.byteOffset, opts.data.byteLength)
+      this.data =
+        opts.data instanceof Uint8ClampedArray
+          ? opts.data
+          : new Uint8ClampedArray(opts.data.buffer, opts.data.byteOffset, opts.data.byteLength)
     } else {
       this.data = new Uint8ClampedArray(expected)
     }
@@ -54,16 +55,23 @@ export class Image {
 
   clone(): Image {
     return new Image({
-      width: this.width, height: this.height, channels: this.channels,
-      colorOrder: this.colorOrder, data: new Uint8ClampedArray(this.data),
+      width: this.width,
+      height: this.height,
+      channels: this.channels,
+      colorOrder: this.colorOrder,
+      data: new Uint8ClampedArray(this.data),
     })
   }
 }
 
 function channelsFor(order: ColorOrder): number {
   switch (order) {
-    case 'GRAY': return 1
-    case 'BGRA': case 'RGBA': return 4
-    default: return 3
+    case 'GRAY':
+      return 1
+    case 'BGRA':
+    case 'RGBA':
+      return 4
+    default:
+      return 3
   }
 }

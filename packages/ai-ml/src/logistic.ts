@@ -6,7 +6,7 @@ import { BaseLearner, type Matrix, type Vector } from './base'
  * negative log-likelihood with optional L2 regularization.
  */
 export class LogisticLearner extends BaseLearner {
-  strength: number  // L2 regularization strength (lambda)
+  strength: number // L2 regularization strength (lambda)
   lr: number
   epochs: number
   private weights: Vector = []
@@ -26,7 +26,7 @@ export class LogisticLearner extends BaseLearner {
   train(X: Matrix, y: Vector): this {
     const n = X.length
     if (n === 0) throw new Error('empty training set')
-    const d = X[0]!.length
+    const d = X[0]?.length
     this.weights = new Array(d).fill(0)
     this.bias = 0
     for (let epoch = 0; epoch < this.epochs; epoch++) {
@@ -69,4 +69,6 @@ export class LogisticLearner extends BaseLearner {
   }
 }
 
-function sigmoid(z: number): number { return 1 / (1 + Math.exp(-z)) }
+function sigmoid(z: number): number {
+  return 1 / (1 + Math.exp(-z))
+}

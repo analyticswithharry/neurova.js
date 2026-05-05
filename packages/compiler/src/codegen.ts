@@ -59,7 +59,7 @@ export function emit(file: FileNode, opts: EmitOptions = {}): string {
   }
 
   if (file.components.length > 0) {
-    out.push(`export default ${file.components[0]!.name}`)
+    out.push(`export default ${file.components[0]?.name}`)
   }
 
   return out.join('\n')
@@ -73,22 +73,22 @@ function emitComponent(comp: ComponentNode, target: EmitTarget): string {
     lines.push(`export function ${comp.name}(${comp.params || 'props'}) {`)
     // For React target, opens with a useReducer hack to force re-render
     // whenever any signal read during render changes.
-    lines.push(`  const [, __nv_force] = React.useReducer((x) => x + 1, 0)`)
-    lines.push(`  React.useEffect(() => {`)
-    lines.push(`    const dispose = effect(() => { __nv_render(); __nv_force() })`)
-    lines.push(`    return dispose`)
-    lines.push(`  }, [])`)
-    lines.push(`  function __nv_render() {}`)
+    lines.push('  const [, __nv_force] = React.useReducer((x) => x + 1, 0)')
+    lines.push('  React.useEffect(() => {')
+    lines.push('    const dispose = effect(() => { __nv_render(); __nv_force() })')
+    lines.push('    return dispose')
+    lines.push('  }, [])')
+    lines.push('  function __nv_render() {}')
   }
 
   for (const stmt of comp.statements) {
-    lines.push('  ' + emitStatement(stmt))
+    lines.push(`  ${emitStatement(stmt)}`)
   }
 
   if (target === 'runtime') {
-    lines.push('  return ' + emitTemplate(comp.template, target))
+    lines.push(`  return ${emitTemplate(comp.template, target)}`)
   } else {
-    lines.push('  return ' + emitTemplate(comp.template, target))
+    lines.push(`  return ${emitTemplate(comp.template, target)}`)
   }
 
   lines.push('}')
@@ -139,7 +139,7 @@ function emitProps(attrs: AttrNode[]): string {
       parts.push(`${JSON.stringify(a.name)}: (${a.expr})`)
     } else {
       // EventAttr — emit on:event for runtime, onEvent for React.
-      parts.push(`${JSON.stringify('on:' + a.event)}: (${a.expr})`)
+      parts.push(`${JSON.stringify(`on:${a.event}`)}: (${a.expr})`)
     }
   }
   return `{ ${parts.join(', ')} }`

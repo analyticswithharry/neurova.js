@@ -21,10 +21,10 @@ import type {
   FileNode,
   ImportNode,
   MustacheNode,
+  SourceLoc,
   StatementNode,
   TemplateChild,
   TextNode,
-  SourceLoc,
 } from './ast.js'
 
 export class CompileError extends Error {
@@ -335,10 +335,7 @@ function parseElement(cur: Cursor): ElementNode {
       cur.pos += 2
       const closing = cur.readIdent()
       if (closing !== tag) {
-        throw new CompileError(
-          `Mismatched closing tag </${closing}> for <${tag}>`,
-          cur.loc(),
-        )
+        throw new CompileError(`Mismatched closing tag </${closing}> for <${tag}>`, cur.loc())
       }
       cur.skipWs()
       cur.expect('>')
@@ -382,10 +379,7 @@ function parseComponent(cur: Cursor): ComponentNode {
   cur.skipWs()
 
   if (cur.peek() !== '<') {
-    throw new CompileError(
-      `Expected template element in component "${name}"`,
-      cur.loc(),
-    )
+    throw new CompileError(`Expected template element in component "${name}"`, cur.loc())
   }
   const template = parseElement(cur)
 
@@ -403,10 +397,7 @@ export function parse(source: string): FileNode {
     cur.skipWs()
     if (cur.eof()) break
     if (!cur.startsWith('component ')) {
-      throw new CompileError(
-        'Expected `import` or `component` declaration at top level',
-        cur.loc(),
-      )
+      throw new CompileError('Expected `import` or `component` declaration at top level', cur.loc())
     }
     components.push(parseComponent(cur))
   }

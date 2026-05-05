@@ -4,12 +4,9 @@ import neurova from '../src/index.js'
 describe('vite-plugin', () => {
   it('compiles .nv files', () => {
     const plugin = neurova()
-    const result = plugin.transform(
-      `component Hi() {\n  <p>hi</p>\n}`,
-      '/x/Hi.nv',
-    )
+    const result = plugin.transform('component Hi() {\n  <p>hi</p>\n}', '/x/Hi.nv')
     expect(result).not.toBeNull()
-    expect(result!.code).toContain('h("p"')
+    expect(result?.code).toContain('h("p"')
   })
 
   it('passes through non-.nv files', () => {

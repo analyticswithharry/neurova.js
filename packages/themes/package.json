@@ -2,7 +2,11 @@
   "name": "@neurova/themes",
   "version": "0.1.0",
   "description": "Design tokens and theme presets for neurova",
-  "repository": { "type": "git", "url": "https://github.com/analyticswithharry/neurova.js.git", "directory": "packages/themes" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/analyticswithharry/neurova.js.git",
+    "directory": "packages/themes"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

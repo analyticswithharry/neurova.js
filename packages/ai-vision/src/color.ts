@@ -10,7 +10,9 @@ export function toGrayscale(img: Image): Image {
   const c = img.channels
   const isRgb = img.colorOrder === 'RGB' || img.colorOrder === 'RGBA'
   for (let i = 0, p = 0; i < out.length; i++, p += c) {
-    const a = img.data[p]!, b = img.data[p + 1]!, d = img.data[p + 2]!
+    const a = img.data[p]!
+    const b = img.data[p + 1]!
+    const d = img.data[p + 2]!
     const r = isRgb ? a : d
     const g = b
     const bl = isRgb ? d : a
@@ -24,12 +26,20 @@ export function swapChannels(img: Image): Image {
   if (img.channels < 3) return img.clone()
   const out = new Uint8ClampedArray(img.data)
   for (let i = 0; i < out.length; i += img.channels) {
-    const t = out[i]!; out[i] = out[i + 2]!; out[i + 2] = t
+    const t = out[i]!
+    out[i] = out[i + 2]!
+    out[i + 2] = t
   }
   let newOrder = img.colorOrder
   if (img.colorOrder === 'BGR') newOrder = 'RGB'
   else if (img.colorOrder === 'RGB') newOrder = 'BGR'
   else if (img.colorOrder === 'BGRA') newOrder = 'RGBA'
   else if (img.colorOrder === 'RGBA') newOrder = 'BGRA'
-  return new Image({ width: img.width, height: img.height, channels: img.channels, colorOrder: newOrder, data: out })
+  return new Image({
+    width: img.width,
+    height: img.height,
+    channels: img.channels,
+    colorOrder: newOrder,
+    data: out,
+  })
 }

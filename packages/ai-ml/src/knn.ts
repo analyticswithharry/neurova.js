@@ -11,7 +11,9 @@ export class KNearestNeighbors extends BaseLearner {
     this.k = opts.k ?? 5
   }
 
-  override getParams(): { k: number } { return { k: this.k } }
+  override getParams(): { k: number } {
+    return { k: this.k }
+  }
 
   train(X: Matrix, y: Vector): this {
     if (X.length !== y.length) throw new Error('X and y length mismatch')
@@ -32,14 +34,22 @@ export class KNearestNeighbors extends BaseLearner {
     const top = dists.slice(0, this.k)
     const counts = new Map<number, number>()
     for (const { label } of top) counts.set(label, (counts.get(label) ?? 0) + 1)
-    let bestLabel = top[0]!.label, bestCount = -1
-    for (const [label, c] of counts) if (c > bestCount) { bestCount = c; bestLabel = label }
+    let bestLabel = top[0]?.label
+    let bestCount = -1
+    for (const [label, c] of counts)
+      if (c > bestCount) {
+        bestCount = c
+        bestLabel = label
+      }
     return bestLabel
   }
 }
 
 function euclidean(a: Vector, b: Vector): number {
   let s = 0
-  for (let i = 0; i < a.length; i++) { const d = a[i]! - b[i]!; s += d * d }
+  for (let i = 0; i < a.length; i++) {
+    const d = a[i]! - b[i]!
+    s += d * d
+  }
   return Math.sqrt(s)
 }

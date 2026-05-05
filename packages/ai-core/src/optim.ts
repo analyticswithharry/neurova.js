@@ -6,11 +6,17 @@ import type { Tensor } from './tensor'
 export abstract class Optimizer {
   constructor(public params: Tensor[]) {}
   abstract step(): void
-  zeroGrad(): void { for (const p of this.params) p.zeroGrad() }
+  zeroGrad(): void {
+    for (const p of this.params) p.zeroGrad()
+  }
 }
 
 export class SGD extends Optimizer {
-  constructor(params: Tensor[], public lr: number = 0.01, public momentum: number = 0) {
+  constructor(
+    params: Tensor[],
+    public lr = 0.01,
+    public momentum = 0,
+  ) {
     super(params)
     if (momentum) this._velocity = params.map((p) => new Float32Array(p.size()))
   }
@@ -38,10 +44,10 @@ export class Adam extends Optimizer {
   private t = 0
   constructor(
     params: Tensor[],
-    public lr: number = 1e-3,
-    public beta1: number = 0.9,
-    public beta2: number = 0.999,
-    public eps: number = 1e-8,
+    public lr = 1e-3,
+    public beta1 = 0.9,
+    public beta2 = 0.999,
+    public eps = 1e-8,
   ) {
     super(params)
     this.m = params.map((p) => new Float32Array(p.size()))
@@ -49,18 +55,20 @@ export class Adam extends Optimizer {
   }
   step(): void {
     this.t++
-    const bc1 = 1 - Math.pow(this.beta1, this.t)
-    const bc2 = 1 - Math.pow(this.beta2, this.t)
+    const bc1 = 1 - this.beta1 ** this.t
+    const bc2 = 1 - this.beta2 ** this.t
     for (let i = 0; i < this.params.length; i++) {
       const p = this.params[i]!
       if (!p.grad) continue
-      const m = this.m[i]!, v = this.v[i]!
+      const m = this.m[i]!
+      const v = this.v[i]!
       for (let k = 0; k < p.data.length; k++) {
         const g = p.grad[k]!
         m[k] = this.beta1 * m[k]! + (1 - this.beta1) * g
         v[k] = this.beta2 * v[k]! + (1 - this.beta2) * g * g
-        const mh = m[k]! / bc1, vh = v[k]! / bc2
-        p.data[k]! -= this.lr * mh / (Math.sqrt(vh) + this.eps)
+        const mh = m[k]! / bc1
+        const vh = v[k]! / bc2
+        p.data[k]! -= (this.lr * mh) / (Math.sqrt(vh) + this.eps)
       }
     }
   }

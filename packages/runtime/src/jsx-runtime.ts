@@ -4,13 +4,9 @@
  *
  *   // tsconfig: { "jsx": "react-jsx", "jsxImportSource": "@neurova/runtime" }
  */
-import { h, type Child, type Component, type Props } from './dom.js'
+import { type Child, type Component, type Props, h } from './dom.js'
 
-export function jsx(
-  type: string | Component<Props>,
-  props: Props,
-  _key?: string,
-): Node {
+export function jsx(type: string | Component<Props>, props: Props, _key?: string): Node {
   const { children, ...rest } = props
   if (Array.isArray(children)) {
     return h(type, rest as Props, ...(children as Child[]))

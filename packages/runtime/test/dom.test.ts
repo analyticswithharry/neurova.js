@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { describe, expect, it } from 'vitest'
-import { signal } from '../src/reactivity.js'
 import { For, h, mount } from '../src/dom.js'
+import { signal } from '../src/reactivity.js'
 
 describe('h + mount', () => {
   it('renders static text', () => {
@@ -32,15 +32,7 @@ describe('h + mount', () => {
   it('event listener via on: prefix', () => {
     const [count, setCount] = signal(0)
     const host = document.createElement('div')
-    mount(
-      () =>
-        h(
-          'button',
-          { 'on:click': () => setCount((c) => c + 1) },
-          'tap',
-        ),
-      host,
-    )
+    mount(() => h('button', { 'on:click': () => setCount((c) => c + 1) }, 'tap'), host)
     const btn = host.querySelector('button')!
     btn.click()
     btn.click()
@@ -51,10 +43,7 @@ describe('h + mount', () => {
     const [items, setItems] = signal<string[]>(['a', 'b'])
     const host = document.createElement('div')
     mount(
-      () =>
-        h('ul', null,
-          For({ each: () => items(), children: (it) => h('li', null, it) }),
-        ),
+      () => h('ul', null, For({ each: () => items(), children: (it) => h('li', null, it) })),
       host,
     )
     expect(host.querySelectorAll('li').length).toBe(2)

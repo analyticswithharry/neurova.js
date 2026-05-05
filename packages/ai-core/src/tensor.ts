@@ -56,7 +56,7 @@ function unbroadcast(grad: Float32Array, gradShape: Shape, target: Shape): Float
   // Pad target with leading 1s.
   const padded = new Array(gradShape.length - target.length).fill(1).concat(target as number[])
   let cur = grad
-  let curShape = gradShape.slice() as number[]
+  const curShape = gradShape.slice() as number[]
   // Sum across axes where target dim is 1 but grad dim is > 1.
   for (let axis = 0; axis < curShape.length; axis++) {
     if (padded[axis] === 1 && curShape[axis]! > 1) {
@@ -91,7 +91,7 @@ function sumAxis(data: Float32Array, shape: number[], axis: number): Float32Arra
       const oc = d === axis ? 0 : coord
       outIdx += oc * outStrides[d]!
     }
-    out[outIdx]! += data[i]!
+    out[outIdx]! += data[i]
     void dim
     void stride
   }
@@ -206,7 +206,9 @@ export class Tensor {
     return reshapeTo(Array.from(this.data), this.shape)
   }
 
-  size(): number { return this.data.length }
+  size(): number {
+    return this.data.length
+  }
 
   clone(): Tensor {
     return new Tensor(this.data.slice(), this.shape, this.requiresGrad)
@@ -236,30 +238,60 @@ export class Tensor {
         if (!parent.requiresGrad) continue
         if (!parent.grad) parent.grad = new Float32Array(parent.size())
         const g = grads[p]!
-        for (let k = 0; k < g.length; k++) parent.grad[k]! += g[k]!
+        for (let k = 0; k < g.length; k++) parent.grad[k]! += g[k]
       }
     }
   }
 
-  zeroGrad(): void { this.grad = null }
+  zeroGrad(): void {
+    this.grad = null
+  }
 
   // ------- elementwise ops -------
-  add(other: Tensor | number): Tensor { return binOp(this, asTensor(other), 'add') }
-  sub(other: Tensor | number): Tensor { return binOp(this, asTensor(other), 'sub') }
-  mul(other: Tensor | number): Tensor { return binOp(this, asTensor(other), 'mul') }
-  div(other: Tensor | number): Tensor { return binOp(this, asTensor(other), 'div') }
-  neg(): Tensor { return this.mul(-1) }
-  pow(p: number): Tensor { return powScalar(this, p) }
-  exp(): Tensor { return unaryOp(this, 'exp') }
-  log(): Tensor { return unaryOp(this, 'log') }
-  relu(): Tensor { return unaryOp(this, 'relu') }
-  sigmoid(): Tensor { return unaryOp(this, 'sigmoid') }
-  tanh(): Tensor { return unaryOp(this, 'tanh') }
-  sum(): Tensor { return sum(this) }
-  mean(): Tensor { return mean(this) }
+  add(other: Tensor | number): Tensor {
+    return binOp(this, asTensor(other), 'add')
+  }
+  sub(other: Tensor | number): Tensor {
+    return binOp(this, asTensor(other), 'sub')
+  }
+  mul(other: Tensor | number): Tensor {
+    return binOp(this, asTensor(other), 'mul')
+  }
+  div(other: Tensor | number): Tensor {
+    return binOp(this, asTensor(other), 'div')
+  }
+  neg(): Tensor {
+    return this.mul(-1)
+  }
+  pow(p: number): Tensor {
+    return powScalar(this, p)
+  }
+  exp(): Tensor {
+    return unaryOp(this, 'exp')
+  }
+  log(): Tensor {
+    return unaryOp(this, 'log')
+  }
+  relu(): Tensor {
+    return unaryOp(this, 'relu')
+  }
+  sigmoid(): Tensor {
+    return unaryOp(this, 'sigmoid')
+  }
+  tanh(): Tensor {
+    return unaryOp(this, 'tanh')
+  }
+  sum(): Tensor {
+    return sum(this)
+  }
+  mean(): Tensor {
+    return mean(this)
+  }
 
   /** 2-D matmul. (m,k) @ (k,n) -> (m,n). */
-  matmul(other: Tensor): Tensor { return matmul(this, other) }
+  matmul(other: Tensor): Tensor {
+    return matmul(this, other)
+  }
 }
 
 function asTensor(v: Tensor | number): Tensor {
@@ -278,7 +310,8 @@ function reshapeTo(flat: number[], shape: number[]): any {
 function binOp(a: Tensor, b: Tensor, op: 'add' | 'sub' | 'mul' | 'div'): Tensor {
   const outShape = broadcastShapes(a.shape, b.shape)
   const out = new Float32Array(numel(outShape))
-  const aStr = a.strides, bStr = b.strides
+  const aStr = a.strides
+  const bStr = b.strides
   for (const { idx, coord } of indices(outShape)) {
     const av = a.data[broadcastIndex(coord, a.shape, aStr)]!
     const bv = b.data[broadcastIndex(coord, b.shape, bStr)]!
@@ -291,24 +324,33 @@ function binOp(a: Tensor, b: Tensor, op: 'add' | 'sub' | 'mul' | 'div'): Tensor 
       backward: (g) => {
         let ga: Float32Array
         let gb: Float32Array
-        if (op === 'add') { ga = g.slice(); gb = g.slice() }
-        else if (op === 'sub') { ga = g.slice(); gb = g.slice(); for (let i = 0; i < gb.length; i++) gb[i] = -gb[i]! }
-        else if (op === 'mul') {
-          ga = new Float32Array(g.length); gb = new Float32Array(g.length)
+        if (op === 'add') {
+          ga = g.slice()
+          gb = g.slice()
+        } else if (op === 'sub') {
+          ga = g.slice()
+          gb = g.slice()
+          for (let i = 0; i < gb.length; i++) gb[i] = -gb[i]!
+        } else if (op === 'mul') {
+          ga = new Float32Array(g.length)
+          gb = new Float32Array(g.length)
           let k = 0
           for (const { coord } of indices(outShape)) {
             const av = a.data[broadcastIndex(coord, a.shape, aStr)]!
             const bv = b.data[broadcastIndex(coord, b.shape, bStr)]!
-            ga[k] = g[k]! * bv; gb[k] = g[k]! * av; k++
+            ga[k] = g[k]! * bv
+            gb[k] = g[k]! * av
+            k++
           }
         } else {
-          ga = new Float32Array(g.length); gb = new Float32Array(g.length)
+          ga = new Float32Array(g.length)
+          gb = new Float32Array(g.length)
           let k = 0
           for (const { coord } of indices(outShape)) {
             const av = a.data[broadcastIndex(coord, a.shape, aStr)]!
             const bv = b.data[broadcastIndex(coord, b.shape, bStr)]!
             ga[k] = g[k]! / bv
-            gb[k] = -g[k]! * av / (bv * bv)
+            gb[k] = (-g[k]! * av) / (bv * bv)
             k++
           }
         }
@@ -323,11 +365,16 @@ function unaryOp(a: Tensor, op: 'exp' | 'log' | 'relu' | 'sigmoid' | 'tanh'): Te
   const out = new Float32Array(a.size())
   for (let i = 0; i < a.data.length; i++) {
     const x = a.data[i]!
-    out[i] = op === 'exp' ? Math.exp(x)
-      : op === 'log' ? Math.log(x)
-      : op === 'relu' ? Math.max(0, x)
-      : op === 'sigmoid' ? 1 / (1 + Math.exp(-x))
-      : Math.tanh(x)
+    out[i] =
+      op === 'exp'
+        ? Math.exp(x)
+        : op === 'log'
+          ? Math.log(x)
+          : op === 'relu'
+            ? Math.max(0, x)
+            : op === 'sigmoid'
+              ? 1 / (1 + Math.exp(-x))
+              : Math.tanh(x)
   }
   const t = new Tensor(out, a.shape, a.requiresGrad)
   if (t.requiresGrad) {
@@ -336,12 +383,20 @@ function unaryOp(a: Tensor, op: 'exp' | 'log' | 'relu' | 'sigmoid' | 'tanh'): Te
       backward: (g) => {
         const ga = new Float32Array(g.length)
         for (let i = 0; i < g.length; i++) {
-          const x = a.data[i]!, y = out[i]!
-          const d = op === 'exp' ? y
-            : op === 'log' ? 1 / x
-            : op === 'relu' ? (x > 0 ? 1 : 0)
-            : op === 'sigmoid' ? y * (1 - y)
-            : 1 - y * y
+          const x = a.data[i]!
+          const y = out[i]!
+          const d =
+            op === 'exp'
+              ? y
+              : op === 'log'
+                ? 1 / x
+                : op === 'relu'
+                  ? x > 0
+                    ? 1
+                    : 0
+                  : op === 'sigmoid'
+                    ? y * (1 - y)
+                    : 1 - y * y
           ga[i] = g[i]! * d
         }
         return [ga]
@@ -353,14 +408,14 @@ function unaryOp(a: Tensor, op: 'exp' | 'log' | 'relu' | 'sigmoid' | 'tanh'): Te
 
 function powScalar(a: Tensor, p: number): Tensor {
   const out = new Float32Array(a.size())
-  for (let i = 0; i < a.data.length; i++) out[i] = Math.pow(a.data[i]!, p)
+  for (let i = 0; i < a.data.length; i++) out[i] = a.data[i]! ** p
   const t = new Tensor(out, a.shape, a.requiresGrad)
   if (t.requiresGrad) {
     t._node = {
       parents: [a],
       backward: (g) => {
         const ga = new Float32Array(g.length)
-        for (let i = 0; i < g.length; i++) ga[i] = g[i]! * p * Math.pow(a.data[i]!, p - 1)
+        for (let i = 0; i < g.length; i++) ga[i] = g[i]! * p * a.data[i]! ** (p - 1)
         return [ga]
       },
     }
@@ -393,7 +448,8 @@ function mean(a: Tensor): Tensor {
 
 function matmul(a: Tensor, b: Tensor): Tensor {
   if (a.shape.length !== 2 || b.shape.length !== 2) throw new Error('matmul requires 2-D tensors')
-  const [m, k] = a.shape, [k2, n] = b.shape
+  const [m, k] = a.shape
+  const [k2, n] = b.shape
   if (k !== k2) throw new Error(`matmul shape mismatch: (${m},${k}) @ (${k2},${n})`)
   const out = new Float32Array(m! * n!)
   for (let i = 0; i < m!; i++) {

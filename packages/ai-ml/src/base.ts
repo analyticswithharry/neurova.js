@@ -21,7 +21,9 @@ export abstract class BaseLearner {
   abstract infer(X: Matrix): Vector
 
   /** Return the constructor parameter map. Subclasses override to expose hyperparams. */
-  getParams(): Record<string, unknown> { return {} }
+  getParams(): Record<string, unknown> {
+    return {}
+  }
 
   /** Mutate hyperparameters in place; only allows existing keys. */
   setParams(params: Record<string, unknown>): this {

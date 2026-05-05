@@ -5,8 +5,8 @@ export { parse, CompileError } from './parser.js'
 export { emit, type EmitOptions, type EmitTarget } from './codegen.js'
 export type * from './ast.js'
 
+import { type EmitOptions, emit } from './codegen.js'
 import { parse } from './parser.js'
-import { emit, type EmitOptions } from './codegen.js'
 
 export interface CompileResult {
   code: string

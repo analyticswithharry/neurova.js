@@ -60,8 +60,7 @@ export function signal<T>(initial: T): Signal<T> {
   }
 
   const write = (next: T | ((prev: T) => T)): void => {
-    const resolved =
-      typeof next === 'function' ? (next as (p: T) => T)(value) : next
+    const resolved = typeof next === 'function' ? (next as (p: T) => T)(value) : next
     if (Object.is(resolved, value)) return
     value = resolved
     for (const sub of subs) pending.add(sub)

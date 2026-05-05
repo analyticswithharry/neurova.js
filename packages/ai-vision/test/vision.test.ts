@@ -1,9 +1,23 @@
-import { describe, it, expect } from 'vitest'
-import { Image, toGrayscale, swapChannels, boxBlur, gaussianBlur, threshold, resize, flipHorizontal, flipVertical } from '../src'
+import { describe, expect, it } from 'vitest'
+import {
+  Image,
+  boxBlur,
+  flipHorizontal,
+  flipVertical,
+  gaussianBlur,
+  resize,
+  swapChannels,
+  threshold,
+  toGrayscale,
+} from '../src'
 
 function solidBgr(w: number, h: number, b: number, g: number, r: number): Image {
   const data = new Uint8ClampedArray(w * h * 3)
-  for (let i = 0; i < data.length; i += 3) { data[i] = b; data[i + 1] = g; data[i + 2] = r }
+  for (let i = 0; i < data.length; i += 3) {
+    data[i] = b
+    data[i + 1] = g
+    data[i + 2] = r
+  }
   return new Image({ width: w, height: h, colorOrder: 'BGR', data })
 }
 
@@ -31,7 +45,7 @@ describe('color', () => {
   })
 
   it('swapChannels flips BGR <-> RGB', () => {
-    const bgr = solidBgr(1, 1, 1, 2, 3)  // B=1, G=2, R=3
+    const bgr = solidBgr(1, 1, 1, 2, 3) // B=1, G=2, R=3
     const rgb = swapChannels(bgr)
     expect(rgb.colorOrder).toBe('RGB')
     expect(Array.from(rgb.data)).toEqual([3, 2, 1])
@@ -63,12 +77,13 @@ describe('transform', () => {
   it('resize halves width', () => {
     const img = solidBgr(4, 4, 1, 2, 3)
     const out = resize(img, 2, 2)
-    expect(out.width).toBe(2); expect(out.height).toBe(2)
+    expect(out.width).toBe(2)
+    expect(out.height).toBe(2)
     expect(Array.from(out.data.slice(0, 3))).toEqual([1, 2, 3])
   })
 
   it('flipHorizontal mirrors columns', () => {
-    const data = new Uint8ClampedArray([1, 0, 0, 2, 0, 0])  // BGR (1, 0, 0) and (2, 0, 0)
+    const data = new Uint8ClampedArray([1, 0, 0, 2, 0, 0]) // BGR (1, 0, 0) and (2, 0, 0)
     const img = new Image({ width: 2, height: 1, colorOrder: 'BGR', data })
     const out = flipHorizontal(img)
     expect(Array.from(out.data)).toEqual([2, 0, 0, 1, 0, 0])

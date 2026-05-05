@@ -4,22 +4,26 @@
 import { Image } from './image'
 
 /** Box blur with a square kernel of side `size` (odd). */
-export function boxBlur(img: Image, size: number = 3): Image {
+export function boxBlur(img: Image, size = 3): Image {
   if (size % 2 === 0) throw new Error('size must be odd')
   const half = (size - 1) / 2
   const out = new Uint8ClampedArray(img.data.length)
-  const w = img.width, h = img.height, c = img.channels
+  const w = img.width
+  const h = img.height
+  const c = img.channels
   for (let y = 0; y < h; y++) {
     for (let x = 0; x < w; x++) {
       for (let ch = 0; ch < c; ch++) {
-        let s = 0, n = 0
+        let s = 0
+        let n = 0
         for (let dy = -half; dy <= half; dy++) {
           const yy = y + dy
           if (yy < 0 || yy >= h) continue
           for (let dx = -half; dx <= half; dx++) {
             const xx = x + dx
             if (xx < 0 || xx >= w) continue
-            s += img.data[(yy * w + xx) * c + ch]!; n++
+            s += img.data[(yy * w + xx) * c + ch]!
+            n++
           }
         }
         out[(y * w + x) * c + ch] = s / n
@@ -30,8 +34,8 @@ export function boxBlur(img: Image, size: number = 3): Image {
 }
 
 /** Gaussian blur. Separable kernel for speed. */
-export function gaussianBlur(img: Image, sigma: number = 1.0, size?: number): Image {
-  const ksize = size ?? Math.max(3, (Math.floor(sigma * 6) | 1))
+export function gaussianBlur(img: Image, sigma = 1.0, size?: number): Image {
+  const ksize = size ?? Math.max(3, Math.floor(sigma * 6) | 1)
   if (ksize % 2 === 0) throw new Error('size must be odd')
   const half = (ksize - 1) / 2
   const kernel = new Float32Array(ksize)
@@ -47,7 +51,9 @@ export function gaussianBlur(img: Image, sigma: number = 1.0, size?: number): Im
 
 function separableConvolve(img: Image, kernel: Float32Array): Image {
   const half = (kernel.length - 1) / 2
-  const w = img.width, h = img.height, c = img.channels
+  const w = img.width
+  const h = img.height
+  const c = img.channels
   const tmp = new Float32Array(img.data.length)
   for (let y = 0; y < h; y++) {
     for (let x = 0; x < w; x++) {

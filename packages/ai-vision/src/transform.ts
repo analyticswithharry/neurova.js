@@ -6,7 +6,9 @@ import { Image } from './image'
 /** Nearest-neighbor resize. */
 export function resize(img: Image, newWidth: number, newHeight: number): Image {
   const out = new Uint8ClampedArray(newWidth * newHeight * img.channels)
-  const w = img.width, h = img.height, c = img.channels
+  const w = img.width
+  const h = img.height
+  const c = img.channels
   for (let y = 0; y < newHeight; y++) {
     const sy = Math.floor((y / newHeight) * h)
     for (let x = 0; x < newWidth; x++) {
@@ -16,11 +18,19 @@ export function resize(img: Image, newWidth: number, newHeight: number): Image {
       for (let ch = 0; ch < c; ch++) out[dstOff + ch] = img.data[srcOff + ch]!
     }
   }
-  return new Image({ width: newWidth, height: newHeight, channels: c, colorOrder: img.colorOrder, data: out })
+  return new Image({
+    width: newWidth,
+    height: newHeight,
+    channels: c,
+    colorOrder: img.colorOrder,
+    data: out,
+  })
 }
 
 export function flipHorizontal(img: Image): Image {
-  const w = img.width, h = img.height, c = img.channels
+  const w = img.width
+  const h = img.height
+  const c = img.channels
   const out = new Uint8ClampedArray(img.data.length)
   for (let y = 0; y < h; y++) {
     for (let x = 0; x < w; x++) {
@@ -33,7 +43,9 @@ export function flipHorizontal(img: Image): Image {
 }
 
 export function flipVertical(img: Image): Image {
-  const w = img.width, h = img.height, c = img.channels
+  const w = img.width
+  const h = img.height
+  const c = img.channels
   const out = new Uint8ClampedArray(img.data.length)
   for (let y = 0; y < h; y++) {
     const srcRow = y * w * c

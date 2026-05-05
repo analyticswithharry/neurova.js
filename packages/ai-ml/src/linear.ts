@@ -5,12 +5,17 @@ export class LinearRegression extends BaseLearner {
   weights: Vector = []
   bias = 0
 
-  constructor(_opts: Record<string, never> = {}) { super() }
-  override getParams(): Record<string, never> { return {} }
+  constructor(_opts: Record<string, never> = {}) {
+    super()
+  }
+  override getParams(): Record<string, never> {
+    return {}
+  }
 
   train(X: Matrix, y: Vector): this {
     // Solve (X^T X) w = X^T y with bias absorbed via augmentation.
-    const n = X.length, d = X[0]!.length
+    const n = X.length
+    const d = X[0]?.length
     const Xa: Matrix = X.map((row) => [...row, 1])
     const cols = d + 1
     // XtX: cols x cols
@@ -48,16 +53,17 @@ function solve(A: Matrix, b: Vector): Vector {
   for (let col = 0; col < n; col++) {
     // Partial pivot.
     let pivot = col
-    for (let r = col + 1; r < n; r++) if (Math.abs(M[r]![col]!) > Math.abs(M[pivot]![col]!)) pivot = r
+    for (let r = col + 1; r < n; r++)
+      if (Math.abs(M[r]?.[col]!) > Math.abs(M[pivot]?.[col]!)) pivot = r
     if (pivot !== col) [M[col], M[pivot]] = [M[pivot]!, M[col]!]
-    const pv = M[col]![col]!
+    const pv = M[col]?.[col]!
     if (Math.abs(pv) < 1e-12) throw new Error('singular matrix')
     for (let c = col; c <= n; c++) M[col]![c]! /= pv
     for (let r = 0; r < n; r++) {
       if (r === col) continue
-      const factor = M[r]![col]!
+      const factor = M[r]?.[col]!
       if (factor === 0) continue
-      for (let c = col; c <= n; c++) M[r]![c]! -= factor * M[col]![c]!
+      for (let c = col; c <= n; c++) M[r]![c]! -= factor * M[col]?.[c]!
     }
   }
   return M.map((row) => row[n]!)

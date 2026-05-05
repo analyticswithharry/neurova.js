@@ -1,7 +1,13 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import {
-  KNearestNeighbors, LogisticLearner, LinearRegression, KMeans,
-  trainTestSplit, accuracyScore, meanSquaredError, duplicate,
+  KMeans,
+  KNearestNeighbors,
+  LinearRegression,
+  LogisticLearner,
+  accuracyScore,
+  duplicate,
+  meanSquaredError,
+  trainTestSplit,
 } from '../src'
 
 describe('BaseLearner contract', () => {
@@ -25,10 +31,22 @@ describe('BaseLearner contract', () => {
 
 describe('KNearestNeighbors', () => {
   it('classifies a 2-D toy dataset', () => {
-    const X = [[0, 0], [0, 1], [1, 0], [10, 10], [10, 11], [11, 10]]
+    const X = [
+      [0, 0],
+      [0, 1],
+      [1, 0],
+      [10, 10],
+      [10, 11],
+      [11, 10],
+    ]
     const y = [0, 0, 0, 1, 1, 1]
     const knn = new KNearestNeighbors({ k: 3 }).train(X, y)
-    expect(knn.infer([[0.5, 0.5], [10.5, 10.5]])).toEqual([0, 1])
+    expect(
+      knn.infer([
+        [0.5, 0.5],
+        [10.5, 10.5],
+      ]),
+    ).toEqual([0, 1])
   })
 })
 
@@ -36,7 +54,10 @@ describe('LogisticLearner', () => {
   it('learns a linearly separable boundary', () => {
     const X: number[][] = []
     const y: number[] = []
-    for (let i = 0; i < 20; i++) { X.push([i / 20]); y.push(i < 10 ? 0 : 1) }
+    for (let i = 0; i < 20; i++) {
+      X.push([i / 20])
+      y.push(i < 10 ? 0 : 1)
+    }
     const m = new LogisticLearner({ epochs: 500, lr: 1 }).train(X, y)
     expect(m.infer([[0.1], [0.9]])).toEqual([0, 1])
   })
@@ -55,7 +76,14 @@ describe('LinearRegression', () => {
 
 describe('KMeans', () => {
   it('separates two clusters', () => {
-    const X = [[0, 0], [0, 1], [1, 0], [10, 10], [10, 11], [11, 10]]
+    const X = [
+      [0, 0],
+      [0, 1],
+      [1, 0],
+      [10, 10],
+      [10, 11],
+      [11, 10],
+    ]
     const km = new KMeans({ k: 2, seed: 42 }).train(X)
     const labels = km.infer(X)
     // Either labeling is valid; both clusters must be internally consistent.

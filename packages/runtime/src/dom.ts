@@ -8,15 +8,7 @@
 
 import { effect, untrack } from './reactivity.js'
 
-export type Child =
-  | string
-  | number
-  | boolean
-  | null
-  | undefined
-  | Node
-  | (() => Child)
-  | Child[]
+export type Child = string | number | boolean | null | undefined | Node | (() => Child) | Child[]
 
 export type Props = Record<string, unknown> & {
   children?: Child | Child[]
@@ -96,11 +88,7 @@ function appendChild(parent: Node, child: Child): void {
  * function. Props starting with `on:` register event listeners; all
  * other props become attributes (functions become reactive bindings).
  */
-export function h(
-  tag: string | Component<Props>,
-  props: Props | null,
-  ...children: Child[]
-): Node {
+export function h(tag: string | Component<Props>, props: Props | null, ...children: Child[]): Node {
   const finalProps: Props = props ?? {}
   if (children.length > 0) finalProps.children = children
 

@@ -28,20 +28,44 @@ export function parseCsv(text: string, opts: ParseCsvOptions = {}): ParseCsvResu
     const ch = text[i]!
     if (inQuotes) {
       if (ch === '"') {
-        if (text[i + 1] === '"') { field += '"'; i += 2; continue }
-        inQuotes = false; i++; continue
+        if (text[i + 1] === '"') {
+          field += '"'
+          i += 2
+          continue
+        }
+        inQuotes = false
+        i++
+        continue
       }
-      field += ch; i++; continue
+      field += ch
+      i++
+      continue
     }
-    if (ch === '"') { inQuotes = true; i++; continue }
-    if (ch === delim) { cur.push(field); field = ''; i++; continue }
-    if (ch === '\r') { i++; continue }
+    if (ch === '"') {
+      inQuotes = true
+      i++
+      continue
+    }
+    if (ch === delim) {
+      cur.push(field)
+      field = ''
+      i++
+      continue
+    }
+    if (ch === '\r') {
+      i++
+      continue
+    }
     if (ch === '\n') {
-      cur.push(field); field = ''
+      cur.push(field)
+      field = ''
       if (cur.length > 1 || cur[0] !== '') rows.push(cur)
-      cur = []; i++; continue
+      cur = []
+      i++
+      continue
     }
-    field += ch; i++
+    field += ch
+    i++
   }
   if (field.length > 0 || cur.length > 0) {
     cur.push(field)

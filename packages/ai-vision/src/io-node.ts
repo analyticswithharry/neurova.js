@@ -37,7 +37,8 @@ export async function readImage(
     : await pipeline.ensureAlpha().raw().toBuffer({ resolveWithObject: true })
 
   const { data, info } = buf as { data: Buffer; info: { width: number; height: number } }
-  const w = info.width, h = info.height
+  const w = info.width
+  const h = info.height
 
   if (wantGray) {
     return new Image({ width: w, height: h, colorOrder: 'GRAY', data: new Uint8ClampedArray(data) })
@@ -48,17 +49,25 @@ export async function readImage(
   }
   if (order === 'BGRA') {
     const out = new Uint8ClampedArray(data)
-    for (let i = 0; i < out.length; i += 4) { const t = out[i]!; out[i] = out[i + 2]!; out[i + 2] = t }
+    for (let i = 0; i < out.length; i += 4) {
+      const t = out[i]!
+      out[i] = out[i + 2]!
+      out[i + 2] = t
+    }
     return new Image({ width: w, height: h, colorOrder: 'BGRA', data: out })
   }
   const out = new Uint8ClampedArray(w * h * 3)
   if (order === 'BGR') {
     for (let i = 0, p = 0; p < data.length; i += 3, p += 4) {
-      out[i] = data[p + 2]!; out[i + 1] = data[p + 1]!; out[i + 2] = data[p]!
+      out[i] = data[p + 2]!
+      out[i + 1] = data[p + 1]!
+      out[i + 2] = data[p]!
     }
   } else {
     for (let i = 0, p = 0; p < data.length; i += 3, p += 4) {
-      out[i] = data[p]!; out[i + 1] = data[p + 1]!; out[i + 2] = data[p + 2]!
+      out[i] = data[p]!
+      out[i + 1] = data[p + 1]!
+      out[i + 2] = data[p + 2]!
     }
   }
   void channels

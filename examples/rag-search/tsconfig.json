@@ -1,0 +1,6 @@
+{
+    "extends": "../../tooling/tsconfig/node.json",
+    "include": [
+        "src"
+    ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@neurova/tsup-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./index.ts",
+  "dependencies": {
+    "tsup": "^8.3.0"
+  }
+}

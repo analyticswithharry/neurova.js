@@ -1,0 +1,20 @@
+:root {
+  --nv-color-primary: #4f46e5;
+  --nv-color-primary-fg: #ffffff;
+  --nv-color-bg: #ffffff;
+  --nv-color-fg: #0f172a;
+  --nv-color-muted: #64748b;
+  --nv-color-border: #e2e8f0;
+  --nv-color-danger: #dc2626;
+  --nv-color-success: #16a34a;
+  --nv-color-warning: #f59e0b;
+  --nv-radius-sm: 4px;
+  --nv-radius-md: 8px;
+  --nv-radius-lg: 14px;
+  --nv-space-unit: 4px;
+  --nv-font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --nv-font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --nv-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --nv-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --nv-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+}

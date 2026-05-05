@@ -1,0 +1,14 @@
+[data-nv-theme="dark"], :root.dark {
+  --nv-color-primary: #818cf8;
+  --nv-color-primary-fg: #0f172a;
+  --nv-color-bg: #0b1020;
+  --nv-color-fg: #e2e8f0;
+  --nv-color-muted: #94a3b8;
+  --nv-color-border: #1e293b;
+  --nv-color-danger: #f87171;
+  --nv-color-success: #4ade80;
+  --nv-color-warning: #fbbf24;
+  --nv-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --nv-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --nv-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+}

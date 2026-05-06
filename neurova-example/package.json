@@ -1,0 +1,27 @@
+{
+  "name": "neurova-example",
+  "private": true,
+  "version": "2.2.2",
+  "type": "module",
+  "description": "Landing page demo built with neurova.js — React 19 + TypeScript + Vite.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173"
+  },
+  "dependencies": {
+    "@neurova/ai": "^2.2.2",
+    "@neurova/runtime": "^2.2.2",
+    "@neurova/themes": "^2.2.2",
+    "@neurova/ui": "^2.2.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
+}

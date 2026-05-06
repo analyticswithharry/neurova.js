@@ -1,17 +1,27 @@
 # neurova.js
 
-> A unified **UI + Backend + AI** library for the modern web.
-> One install. Three layers. TypeScript-first. Zero-config.
+**A unified TypeScript-first stack for modern applications — UI, Backend, and AI in one ecosystem.**
+
+`neurova.js` is a monorepo of interoperable packages designed to help teams build full-stack products faster with consistent APIs, shared primitives, and zero-config developer ergonomics.
+
+## Why neurova.js
+
+- **One ecosystem, three layers:** UI components, backend tooling, and AI capabilities.
+- **TypeScript-first by design:** End-to-end type safety across packages.
+- **Composable architecture:** Use only the packages you need, or adopt the full stack.
+- **Built for modern workflows:** Monorepo-friendly, testable, and production-focused.
+
+## Get started
 
 ```bash
 npm create neurova@latest my-app
 ```
 
-## Packages
+## Package overview
 
 | Package | Description |
 |---|---|
-| [`neurova`](./packages/neurova) | Meta-package re-exporting `ui`, `backend`, `ai` |
+| [`neurova`](./packages/neurova) | Meta-package re-exporting `ui`, `backend`, and `ai` |
 | [`@neurova/core`](./packages/core) | Shared primitives: errors, logger, schema, ids, events |
 | [`@neurova/ui`](./packages/ui) | React 19 component library, SSR-safe |
 | [`@neurova/backend`](./packages/backend) | Fastify-based server toolkit (db, auth, queue, sockets) |
@@ -26,7 +36,7 @@ npm create neurova@latest my-app
 | [`@neurova/testing`](./packages/testing) | Test utilities for all three layers |
 | [`create-neurova`](./packages/create-neurova) | Project scaffolder |
 
-## Quick start
+## Quick usage
 
 ```ts
 import { chat } from '@neurova/ai'
@@ -34,9 +44,14 @@ import { createServer } from '@neurova/backend'
 import { Button, ChatWindow } from '@neurova/ui'
 ```
 
-📖 **Full API reference:** [DOCUMENTATION.md](./DOCUMENTATION.md) — every function, hook, and component with one-line usage examples.
+## Documentation
 
-## Develop
+- **Full API reference:** [`DOCUMENTATION.md`](./DOCUMENTATION.md)
+- Package-level docs are available in each package directory under `packages/*/README.md`.
+
+## Development
+
+From the repository root:
 
 ```bash
 pnpm install
@@ -45,6 +60,10 @@ pnpm dev
 pnpm test
 ```
 
+## License
+
+Released under the [MIT License](./LICENSE).
+
 ## Copyright
 
-© 2026 **@analyticswithharry** and **Squid Consultancy Group Ltd**. Released under the [MIT License](./LICENSE).
+© 2026 **@analyticswithharry** and **Squid Consultancy Group Ltd**.

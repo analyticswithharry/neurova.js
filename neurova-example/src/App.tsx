@@ -827,16 +827,17 @@ function BotDock({ personas }: { personas: Persona[] }) {
 
 type Route = 'home' | 'menu' | 'roastery'
 
+const parseRoute = (): Route => {
+  const h = (typeof location !== 'undefined' ? location.hash : '').replace(/^#\/?/, '')
+  if (h === 'menu') return 'menu'
+  if (h === 'roastery') return 'roastery'
+  return 'home'
+}
+
 function useRoute(): [Route, (r: Route) => void] {
-  const parse = (): Route => {
-    const h = (typeof location !== 'undefined' ? location.hash : '').replace(/^#\/?/, '')
-    if (h === 'menu') return 'menu'
-    if (h === 'roastery') return 'roastery'
-    return 'home'
-  }
-  const [route, setRouteState] = useState<Route>(parse)
+  const [route, setRouteState] = useState<Route>(parseRoute)
   useEffect(() => {
-    const onHash = () => setRouteState(parse())
+    const onHash = () => setRouteState(parseRoute())
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
@@ -845,7 +846,7 @@ function useRoute(): [Route, (r: Route) => void] {
   }
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
-  }, [route])
+  }, [])
   return [route, setRoute]
 }
 

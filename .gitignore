@@ -15,3 +15,6 @@ coverage
 # Excluded training corpus (kept locally)
 train-files
 doc
+
+# Local agent state
+.claude/

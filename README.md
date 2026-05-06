@@ -1,23 +1,56 @@
 # neurova.js
 
-**A unified TypeScript-first stack for modern applications — UI, Backend, and AI in one ecosystem.**
+<p align="left">
+	<a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-green.svg" /></a>
+	<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-First-3178C6?logo=typescript&logoColor=white" />
+	<img alt="Monorepo" src="https://img.shields.io/badge/Monorepo-Turborepo-EF4444" />
+	<img alt="Package Manager" src="https://img.shields.io/badge/Package_Manager-pnpm-F69220?logo=pnpm&logoColor=white" />
+</p>
 
-`neurova.js` is a monorepo of interoperable packages designed to help teams build full-stack products faster with consistent APIs, shared primitives, and zero-config developer ergonomics.
+**A unified UI + Backend + AI framework for modern web apps.**
+
+Build full-stack TypeScript products from one cohesive ecosystem instead of stitching together disconnected tools.
+
+---
+
+## Table of Contents
+
+- [Why neurova.js](#why-neurovajs)
+- [Quick Start](#quick-start)
+- [Package Catalog](#package-catalog)
+- [Architecture at a Glance](#architecture-at-a-glance)
+- [Documentation](#documentation)
+- [Development](#development)
+- [Contributing](#contributing)
+- [Security](#security)
+- [License](#license)
 
 ## Why neurova.js
 
-- **One ecosystem, three layers:** UI components, backend tooling, and AI capabilities.
-- **TypeScript-first by design:** End-to-end type safety across packages.
-- **Composable architecture:** Use only the packages you need, or adopt the full stack.
-- **Built for modern workflows:** Monorepo-friendly, testable, and production-focused.
+`neurova.js` is designed for teams shipping real products fast.
 
-## Get started
+- **One install. Three layers.** UI components, backend services, and AI tooling in one stack.
+- **Type-safe end to end.** Shared primitives and APIs across the entire monorepo.
+- **Composable by default.** Adopt one package or the whole platform.
+- **Production-minded.** SSR-safe UI, backend utilities, AI capabilities, and testing support.
+
+## Quick Start
+
+Create a new project:
 
 ```bash
 npm create neurova@latest my-app
 ```
 
-## Package overview
+Example imports:
+
+```ts
+import { chat } from '@neurova/ai'
+import { createServer } from '@neurova/backend'
+import { Button, ChatWindow } from '@neurova/ui'
+```
+
+## Package Catalog
 
 | Package | Description |
 |---|---|
@@ -28,26 +61,27 @@ npm create neurova@latest my-app
 | [`@neurova/ai`](./packages/ai) | LLM + embeddings + RAG + agents |
 | [`@neurova/ai-core`](./packages/ai-core) | Tensor + autograd + nn + optim + losses (zero deps) |
 | [`@neurova/ai-ml`](./packages/ai-ml) | Classical ML: KNN, Logistic, Linear, KMeans (`.train`/`.infer`) |
-| [`@neurova/ai-vision`](./packages/ai-vision) | Image (BGR default), filters, dual ImageBitmap/sharp IO |
+| [`@neurova/ai-vision`](./packages/ai-vision) | Image processing (BGR default), filters, dual ImageBitmap/sharp IO |
 | [`@neurova/ai-data`](./packages/ai-data) | Built-in datasets (Iris, Fashion-MNIST) + CSV parser |
 | [`@neurova/cli`](./packages/cli) | `neurova create | dev | build | deploy` |
 | [`@neurova/icons`](./packages/icons) | Tree-shakeable SVG icon set |
 | [`@neurova/themes`](./packages/themes) | Design tokens + presets |
-| [`@neurova/testing`](./packages/testing) | Test utilities for all three layers |
-| [`create-neurova`](./packages/create-neurova) | Project scaffolder |
+| [`@neurova/testing`](./packages/testing) | Test utilities for UI, Backend, and AI layers |
+| [`create-neurova`](./packages/create-neurova) | Official project scaffolder |
 
-## Quick usage
+## Architecture at a Glance
 
-```ts
-import { chat } from '@neurova/ai'
-import { createServer } from '@neurova/backend'
-import { Button, ChatWindow } from '@neurova/ui'
-```
+The monorepo is organized for both framework development and real-world usage examples:
+
+- `packages/*` → core framework packages
+- `apps/*` → docs and playground applications
+- `examples/*` → targeted integration examples
+- `neurova-example/` → full sample app
 
 ## Documentation
 
 - **Full API reference:** [`DOCUMENTATION.md`](./DOCUMENTATION.md)
-- Package-level docs are available in each package directory under `packages/*/README.md`.
+- **Package docs:** each package includes its own `README.md` under [`packages/`](./packages)
 
 ## Development
 
@@ -60,10 +94,22 @@ pnpm dev
 pnpm test
 ```
 
+## Contributing
+
+Contributions are welcome and appreciated.
+
+- Open an issue for bug reports or feature requests.
+- Keep changes scoped and include tests when applicable.
+- For package-level details, check each package `README.md` before opening a PR.
+
+## Security
+
+If you discover a security issue, please report it privately to the maintainers instead of opening a public issue.
+
 ## License
 
 Released under the [MIT License](./LICENSE).
 
-## Copyright
+---
 
 © 2026 **@analyticswithharry** and **Squid Consultancy Group Ltd**.

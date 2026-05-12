@@ -113,4 +113,4 @@ Released under the [MIT License](./LICENSE).
 
 ---
 
-© 2026 **@analyticswithharry** **Costrick Ltd**. and **Squid Consultancy Group Ltd**.
+© 2026 **@analyticswithharry** **@Costrick Ltd**. and **Squid Consultancy Group Ltd**.
